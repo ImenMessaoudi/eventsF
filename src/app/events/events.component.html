@@ -1,0 +1,104 @@
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+        <div class="col-md-9 ftco-animate pb-5">
+          <h1 class="mb-3 bread">Events</h1>
+          <p class="breadcrumbs"><span class="mr-2"><a href="#">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="ftco-section bg-light">
+    <div class="container">
+  
+        <h4 class="h4">Dernières Offres d'emploi</h4>
+
+        <div class="jobs">
+            <form [formGroup]="searchForm" (ngSubmit)="serach()">
+                <input class="form-control" type="text"  formControlName="adress" placeholder="Emplacement (Adresse)"/>
+                <input class="form-control" type="text"  formControlName="key" placeholder="Mots Clés"/>
+                <button type="submit" class="button-searsh">Search</button>
+            </form>
+        </div>
+        <div class="row">
+            <span class="annonces">  annonces trouvées</span>
+            <div class="col-4">
+                    <div class="search">
+                        <div class="filter">Filter</div>
+                    </div>
+                    <div class="search-zone">
+                        <form style="    display: block;">
+                            <input type="date" class="form-control"><br> 
+                            <input type="date" class="form-control"><br>
+                            <button type="submit" class="button-filter">Filter</button>
+                        </form>
+                    </div>
+            </div>
+            <div class="col-8">
+                
+                <div class="menu-content">
+                    <div class="menu-items">
+                            <ng-container *ngFor="let item of events ">
+                            
+                            <div class="menu-item flex">
+                                    
+                
+                                    <div class="menuItem-details" style="    width: 79%;">
+                                            <h4 class="menuItem-topic" style="    font-size: 19px;">{{item.title}}<span class="date">{{item.startDate|date:'dd/MM/yyyy'}}  - {{item.startDate|date:'dd/MM/yyyy'}} </span></h4>
+                                            <p class="menuItem-des">
+                                                    
+                                                    {{item.description?.length>50 ? (item.description | slice:0:150)+'..' : item.description}}
+                                                     </p>
+                                                     <span class="discount-price"><i class='bx bx-building-house'></i> {{item.type}}</span>
+                                            <span class="adresse"> <i class='bx bxs-map'></i>{{item.lieu}}</span>
+                                           
+                                    </div>
+                
+                                     <div class="choose" style="display: block;">
+                                        <button style="    height: 4%;" class="btn btn-sm mb-0 me-1 btn-primary" routerLink="/job/{{item._id}}">Voir plus</button>
+                                        <button style="    height: 4%;    background: #686677 !important;
+                                        border: 1px solid #686677 !important;
+                                        color: #fff !important;" class="btn btn-sm mb-0 me-1 btn-primary" routerLink="/job/{{item._id}}">Rejoindre</button>
+                               
+                                     </div>
+                                    
+                                    </div>
+                             
+                    </ng-container>
+                            
+                    </div>
+                
+                    
+                </div>
+            </div>
+        </div>
+  
+    
+    </div>
+  </section>
+  
+  <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2>Subcribe to our Newsletter</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+            <div class="row d-flex justify-content-center mt-4 mb-4">
+              <div class="col-md-8">
+                <form action="#" class="subscribe-form">
+                  <div class="form-group d-flex">
+                    <input type="text" class="form-control" placeholder="Enter email address">
+                    <input type="submit" value="Subscribe" class="submit px-3">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

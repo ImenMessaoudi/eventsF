@@ -1,0 +1,7 @@
+:host {
+  all: unset;
+}
+@import "../../assets/css/nucleo-icons.css";
+@import "../../assets/css/nucleo-svg.css";
+@import "../../assets/css/gapi2.css";
+@import "../../assets/css/argon-dashboard.css";

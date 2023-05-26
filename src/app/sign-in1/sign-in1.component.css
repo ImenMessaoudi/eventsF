@@ -1,0 +1,8 @@
+.items{
+    display: flex !important;
+    /* justify-content: start; */
+    width: 153% !important;
+}
+.left{
+    margin-left: 10% !important;
+}
