@@ -23,6 +23,7 @@ import { NewUserComponent } from './dashboard/new-user/new-user.component';
 import { UpdateUserComponent } from './dashboard/update-user/update-user.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { ListeReclamationComponent } from './dashboard/liste-reclamation/liste-reclamation.component';
+import { ActivityComponent } from './dashboard/activity/activity.component';
   
 const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -50,6 +51,7 @@ const routes: Routes = [
   {path: "update-user/:id", component: UpdateUserComponent}, 
   {path: "reclamation", component: ReclamationComponent}, 
   {path: "reclamations/:id", component: ListeReclamationComponent},
+  {path: "activity/:id", component: ActivityComponent},
 
 
 

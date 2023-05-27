@@ -33,6 +33,7 @@ import { UpdateUserComponent } from './dashboard/update-user/update-user.compone
  import { ReclamationService } from './services/reclamation.service';
 import { ListeReclamationComponent } from './dashboard/liste-reclamation/liste-reclamation.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
+import { ActivityComponent } from './dashboard/activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
     NewUserComponent,
     UpdateUserComponent,
     ReclamationComponent,
-    ListeReclamationComponent
+    ListeReclamationComponent,
+    ActivityComponent
   ],
   imports: [CommonModule,
     BrowserModule,

@@ -38,7 +38,7 @@ export class SignIn1Component implements OnInit {
 
 
       localStorage.setItem('id', res.id);
-      localStorage.setItem('token', res.token)
+      localStorage.setItem('token', res.accessToken)
       this.router.navigate(['/profil'])
 
     }, (error: any) => {

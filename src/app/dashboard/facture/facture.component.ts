@@ -3,6 +3,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { EventService } from 'src/app/services/event.service';
 import { FactureService } from 'src/app/services/facture.service';
 import * as html2pdf from 'html2pdf.js' 
+import { ReservationService } from 'src/app/services/reservation.service';
 @Component({
   selector: 'app-facture',
   templateUrl: './facture.component.html',
@@ -10,11 +11,17 @@ import * as html2pdf from 'html2pdf.js'
   encapsulation: ViewEncapsulation.None
 })
 export class FactureComponent {
-  events:any
-  constructor(private eventsService:EventService,private factureService:FactureService,private toast: HotToastService) {}
+  reservations:any;
+  reservation?:any;
+  date:any
+
+  constructor(private eventsService:EventService,private reservatioService:ReservationService,
+    private factureService:FactureService,private toast: HotToastService) {}
   ngOnInit() {
-this.eventsService.getAll().subscribe(res=>{
-  this.events=res;
+
+    this.date=Date.now()
+this.reservatioService.getAllReservation().subscribe(res=>{
+  this.reservations=res;
 })
 
 
@@ -45,6 +52,14 @@ this.toast.success('Voucher created with success')
 }
 
 public voucher(id): void {  
+console.log(id);
+
+  this.reservation=this.reservations.filter(res=>
+      res.reservationId==id
+  )
+  this.reservation=this.reservation[0]
+  console.log(this.reservation);
+  
  
   const option ={
     filename:"Voucher-"+Date.now()+".pdf",

@@ -43,4 +43,12 @@ private url="http://localhost:8089/api/event";
   getEventByType(){
     return this.http.get<any>(this.url+'/event-by-type')
   }
+
+  findAllByStartDateBetween(start:any,end:any){
+    return this.http.get<any>(this.url+'/findAllByStartDateBetween/'+start+'/'+end)
+  }
+
+  findEventByTitleContainingOrDescriptionContaining(title:any,description:any){
+    return this.http.get<any>(this.url+'/findEventByTitleContainingOrDescriptionContaining/'+title+'/'+description)
+  }
 }

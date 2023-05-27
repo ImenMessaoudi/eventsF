@@ -13,25 +13,25 @@
   <section class="ftco-section bg-light">
     <div class="container">
   
-        <h4 class="h4">Dernières Offres d'emploi</h4>
+        <h4 class="h4">Dernières événement</h4>
 
         <div class="jobs">
             <form [formGroup]="searchForm" (ngSubmit)="serach()">
-                <input class="form-control" type="text"  formControlName="adress" placeholder="Emplacement (Adresse)"/>
-                <input class="form-control" type="text"  formControlName="key" placeholder="Mots Clés"/>
+                <input class="form-control" type="text"  formControlName="title" placeholder="Title"/>
+                <input class="form-control" type="text"  formControlName="description" placeholder="Mots Clés"/>
                 <button type="submit" class="button-searsh">Search</button>
             </form>
         </div>
         <div class="row">
-            <span class="annonces">  annonces trouvées</span>
+            <span class="annonces"> {{events.length}} événement trouvées</span>
             <div class="col-4">
                     <div class="search">
                         <div class="filter">Filter</div>
                     </div>
                     <div class="search-zone">
-                        <form style="    display: block;">
-                            <input type="date" class="form-control"><br> 
-                            <input type="date" class="form-control"><br>
+                        <form style="    display: block;"  [formGroup]="searchBydateForm" (ngSubmit)="serachbyDate()">
+                            <input type="date"  formControlName="start" class="form-control"><br> 
+                            <input type="date"   formControlName="end" class="form-control"><br>
                             <button type="submit" class="button-filter">Filter</button>
                         </form>
                     </div>
@@ -60,7 +60,7 @@
                                         <button style="    height: 4%;" class="btn btn-sm mb-0 me-1 btn-primary" routerLink="/job/{{item._id}}">Voir plus</button>
                                         <button style="    height: 4%;    background: #686677 !important;
                                         border: 1px solid #686677 !important;
-                                        color: #fff !important;" class="btn btn-sm mb-0 me-1 btn-primary" routerLink="/job/{{item._id}}">Rejoindre</button>
+                                        color: #fff !important;" class="btn btn-sm mb-0 me-1 btn-primary" (click)="reserver(item.id)" >Rejoindre</button>
                                
                                      </div>
                                     

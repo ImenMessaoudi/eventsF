@@ -19,7 +19,8 @@ user:any;
 modalTitle=''
 events:any=[]
 id:any=''
-constructor(private router:Router,private route: ActivatedRoute,private fb:FormBuilder,private toast: HotToastService,private userService:UserService){}
+constructor(private router:Router,private route: ActivatedRoute,private fb:FormBuilder,
+  private toast: HotToastService,private userService:UserService){}
 ngOnInit() {
 
   this.id = this.route.snapshot.paramMap.get('id');
