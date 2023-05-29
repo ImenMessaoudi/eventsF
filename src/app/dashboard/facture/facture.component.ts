@@ -14,7 +14,7 @@ export class FactureComponent {
   reservations:any;
   reservation?:any;
   date:any
-
+  p: number = 1;
   constructor(private eventsService:EventService,private reservatioService:ReservationService,
     private factureService:FactureService,private toast: HotToastService) {}
   ngOnInit() {

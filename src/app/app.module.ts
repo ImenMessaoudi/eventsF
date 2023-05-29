@@ -34,6 +34,7 @@ import { UpdateUserComponent } from './dashboard/update-user/update-user.compone
 import { ListeReclamationComponent } from './dashboard/liste-reclamation/liste-reclamation.component';
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { ActivityComponent } from './dashboard/activity/activity.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ActivityComponent } from './dashboard/activity/activity.component';
     AppRoutingModule,
     NgOptimizedImage,
     HttpClientModule, 
-    HotToastModule.forRoot()
+    HotToastModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [DatePipe,FactureService,ReclamationService],
   bootstrap: [AppComponent]

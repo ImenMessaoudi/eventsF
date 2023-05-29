@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ListMembreComponent implements OnInit,OnDestroy{
   users:any=[]
+  p: number = 1;
   constructor(private userService:UserService,private toast: HotToastService){}
   ngOnInit() {
   this.getAll()

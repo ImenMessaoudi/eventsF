@@ -109,5 +109,9 @@ aside h1 { border-color: #999; border-bottom-style: solid; }
 .voucher tr:hover .cut { opacity: 1; }
 
  
+.navigation{
+    MARGIN-LEFT: 42% !important;
+    MARGIN-TOP: 6% !important;
+}
 
  

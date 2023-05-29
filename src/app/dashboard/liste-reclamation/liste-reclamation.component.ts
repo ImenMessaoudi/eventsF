@@ -11,6 +11,7 @@ export class ListeReclamationComponent {
 
   reclamations:any=[]
   id:any;
+  p: number = 1;
     constructor(private route:ActivatedRoute,private reclamationService:ReclamationService){
   
     }
