@@ -19,5 +19,10 @@ private url="http://localhost:8089/api/reservation";
     return this.http.get<any>(this.url+'/users/reservations')
    }
 
+   delete (id:any){
+      return this.http.delete<any>(this.url+'/delete/'+id)
+     }
+  
+
    
 }

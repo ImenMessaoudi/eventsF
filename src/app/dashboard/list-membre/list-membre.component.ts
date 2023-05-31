@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
  import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import * as html2pdf from 'html2pdf.js' 
 
 @Component({
   selector: 'app-list-membre',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class ListMembreComponent implements OnInit,OnDestroy{
   users:any=[]
-  p: number = 1;
+  p: number = 1;value:any
   constructor(private userService:UserService,private toast: HotToastService){}
   ngOnInit() {
   this.getAll()
@@ -26,6 +27,14 @@ export class ListMembreComponent implements OnInit,OnDestroy{
     const element2 = document.getElementById("ftco-footer");
     element2.removeAttribute("hidden");
   }
+  
+  valuechange(e:any){
+    this.userService.search(this.value).subscribe(res=>{
+      console.log(res);
+      
+      this.users=res
+    })
+}
   desactive(id){
 
     this.userService.desactive(id).subscribe(res=>{
@@ -82,6 +91,23 @@ this.getAll()
     }
   })
  }
+ 
+public pdf( ): void {  
+   
+    
+   
+    const option ={
+      filename:"list-"+Date.now()+".pdf",
+      image:{
+        type:'jpeg'
+      },
+      html2canavas:{},
+      jsPDF:{orientation:'portrait'}
+  
+    };
+    const content : Element=document.getElementById('content')
+      html2pdf().from(content).set(option).save()
+  }
 }
 
  

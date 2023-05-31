@@ -100,7 +100,11 @@
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header pb-0 headers">
-            <h6>List users</h6><button class="btn btn-primary" routerLink="/new-user" > New user</button>
+            <h6>List users</h6> 
+            <input type="text" class="form-control inp"  [(ngModel)]="value" (ngModelChange)="valuechange($event)"placeholder="Type here...">
+             <button class="btn btn-primary" (click)="pdf()" style="    background: #ff572a !important;
+             border: none !important;"> Generate Pdf</button>
+             <button class="btn btn-primary" routerLink="/new-user" > New user</button>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
@@ -121,9 +125,7 @@
                         <tr>
                             <td>
                               <div class="d-flex px-2 py-1">
-                                <div>
-                                  <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
-                                </div>
+                               
                                 <div class="d-flex flex-column justify-content-center">
                                   <h6 class="mb-0 text-sm">{{item.firstName}} {{item.lastName}}</h6>
                                   <p class="text-xs text-secondary mb-0">{{item.email}} </p>
@@ -208,3 +210,77 @@
     </footer>
   </div>
 </main>
+<div class="v" style="display: none;">
+  <div class="voucher"   id="content"    #content>
+  
+    <header style="margin: 50px;">
+      <h1>Liste des utilisateurs</h1>
+       
+       
+    </header>
+ 
+    <div class="card-body px-0 pt-0 pb-2">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+          <thead>
+          <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Username</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
+ 
+             
+          </tr>
+          </thead>
+          <tbody>
+              <ng-container *ngFor="let item of users  ">
+                  <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                         
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">{{item.firstName}} {{item.lastName}}</h6>
+                            <p class="text-xs text-secondary mb-0">{{item.email}} </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                          <p class="text-xs font-weight-bold mb-0"  >{{item.username}}</p>
+                           
+                        </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0" style="text-align: center;">{{item.roles[0].name}}</p>
+                         
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                          <ng-container *ngIf="item.active">
+                          
+                        <span class="badge badge-sm bg-gradient-success">Online</span>
+                      </ng-container>
+                      <ng-container *ngIf="!item.active">
+                          <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                        </ng-container>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">{{item.phone}}</span>
+                      </td>
+                       
+                      
+                    </tr>
+                  
+              </ng-container>
+              
+        
+          
+         
+         
+     
+          </tbody>
+        </table>
+         
+      </div>
+    </div>
+  
+  </div>
+  </div>

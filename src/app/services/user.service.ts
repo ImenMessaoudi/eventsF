@@ -34,4 +34,7 @@ private url="http://localhost:8089/api/user";
 
  return  this.http.post<any>(this.url+'/new-user',resource)
  }
+ search(value:any){
+   return this.http.get<any>(this.url+'/search/'+value )
+ }
 }
