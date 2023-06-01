@@ -87,7 +87,8 @@ console.log(this.reservation.user.id);
 
   this.factureService.addFacture(this.reservation.user.id,id,data).subscribe(res=>{
 
-this.toast.success('Reservation created with success')
+this.toast.success('Reservation created with success');
+this.getAll()
   })
 
   
