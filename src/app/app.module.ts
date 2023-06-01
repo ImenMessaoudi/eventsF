@@ -35,6 +35,7 @@ import { ListeReclamationComponent } from './dashboard/liste-reclamation/liste-r
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { ActivityComponent } from './dashboard/activity/activity.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgOptimizedImage,
     HttpClientModule, 
     HotToastModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    GoogleMapsModule,
+
   ],
   providers: [DatePipe,FactureService,ReclamationService],
   bootstrap: [AppComponent]

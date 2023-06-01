@@ -57,7 +57,7 @@
                                     </div>
                 
                                      <div class="choose" style="display: block;">
-                                        <button style="    height: 4%;" class="btn btn-sm mb-0 me-1 btn-primary" routerLink="/job/{{item._id}}">Voir plus</button>
+                                        <button style="    height: 4%;" class="btn btn-sm mb-0 me-1 btn-primary" (click)="open(item.id)">Voir plus</button>
                                         <button style="    height: 4%;    background: #686677 !important;
                                         border: 1px solid #686677 !important;
                                         color: #fff !important;" class="btn btn-sm mb-0 me-1 btn-primary" (click)="reserver(item.id)" >Réserver</button>
@@ -101,4 +101,68 @@
       </div>
     </div>
   </section>
-  
+  <div class="modal fade my-modal" tabindex="-1" role="dialog" #myModal >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            
+   
+           <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body" *ngIf="event!=null">
+        
+        <div class="events">
+          <h4 style="text-align: center;">Event details</h4>
+          <div class="ligne">
+            <span>Title</span>
+            <span>{{event.title}}</span>
+          </div>
+
+          <div class="ligne">
+            <span>Date début</span>
+            <span>{{event.title}}</span>
+          </div>
+          <div class="ligne">
+            <span>Date fin</span>
+            <span>{{event.title}}</span>
+          </div>
+          <div class="ligne">
+            <span>Type</span>
+            <span>{{event.title}}</span>
+          </div>
+
+          <h3>List des activites</h3>
+
+         
+          
+
+          <div class="activ">
+            <span>Title</span>
+            <span>Type</span>
+            <span>Heure debut</span>
+            <span>Heure fin</span>
+            <span>Prix</span>
+          </div>
+          <hr>
+          <ng-container *ngFor="let item of event.activites">
+            <div class="activ">
+              <span>{{item.title}}</span>
+              <span>{{item.type}}</span>
+              <span>{{item.debut}}</span>
+              <span>{{item.fin}}</span>
+              <span>{{item.montant}}</span>
+            </div>
+          </ng-container>
+          
+        </div>
+        </div>
+        <google-map [center]="center"
+            [zoom]="zoom"></google-map>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"  (click)="close()" >Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

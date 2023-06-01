@@ -240,3 +240,59 @@ i{
     margin-right: -99px;
     margin-top: -10px;
 }
+
+
+  
+
+.modal-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 128% !important;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+    left: -20% !important;
+  }
+  .close{
+    border: none;
+    background: none;
+    font-size: 144%;
+}
+.fade {
+    opacity: 0;
+    transition: opacity .15s linear;
+}
+.modal-backdrop.show {
+    opacity: .5;
+}
+.modal-backdrop.fade {
+    opacity: 0;
+}
+.fade.show {
+    opacity: 1;
+}
+.my-modal {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 0;
+    }
+
+.activ{
+    display: flex;
+    justify-content: space-around;
+}
+    .ligne{
+        
+    display: flex;
+    justify-content: space-between;
+    font-size: 19px;
+    padding: 25px;
+    margin-top: -50px;
+
+    }
