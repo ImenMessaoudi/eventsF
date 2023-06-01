@@ -25,6 +25,8 @@ export class ActivityComponent {
       description:['',Validators.required],
       debut:['',Validators.required],
       fin:['',Validators.required],
+      type:['',Validators.required],
+      montant:['',Validators.required],
 })
    this.getAll();
       const element1 = document.getElementById("header1");
@@ -50,6 +52,8 @@ getAll(){
         description:this.activityForm.value.description,
         debut:this.activityForm.value.debut,
         fin:this.activityForm.value.fin,
+        montant:this.activityForm.value.montant,
+        type:this.activityForm.value.type
  }
  this.activityService.addEvents(this.id,data).subscribe(res=>{
   this.getAll()

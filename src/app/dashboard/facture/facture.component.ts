@@ -14,8 +14,11 @@ import Swal from 'sweetalert2';
 export class FactureComponent {
   reservations:any;
   reservation?:any;
-  date:any
+  totala:any=0;
+  date:any;
+  id:any
   p: number = 1;
+  total:any=0;
   constructor(private eventsService:EventService,private reservatioService:ReservationService,
     private factureService:FactureService,private toast: HotToastService) {}
   ngOnInit() {
@@ -57,7 +60,7 @@ console.log(id);
     }).then((result) => {
       if (result.isConfirmed) {
         this.reservatioService.delete(id).subscribe(res=>{
-          this.toast.success('Membre deleted with success!!');
+          this.toast.success('Réservation rejecter with success!!');
       this.getAll()
         })
       }
@@ -68,29 +71,49 @@ console.log(id);
 
  
 create(id){
+  console.log(id);
+  
   let data={
     payement:"chéque"
     
   }
-id=1;
-  this.factureService.addFacture(id,data).subscribe(res=>{
+ 
+  
+  this.reservation=this.reservations.filter(res=>
+    res.id==id
+)
+this.reservation=this.reservation[0]
+console.log(this.reservation.user.id);
+
+  this.factureService.addFacture(this.reservation.user.id,id,data).subscribe(res=>{
 
 this.toast.success('Reservation created with success')
   })
 
   
 
+
   
 }
 
 public voucher(id): void {  
-console.log(id);
+
+this.total=0
 
   this.reservation=this.reservations.filter(res=>
-      res.reservationId==id
+      res.id==id
   )
   this.reservation=this.reservation[0]
-  console.log(this.reservation);
+  this.reservation?.event?.activites.forEach(element => {
+    console.log(element);
+    
+    this.total=element.montant+this.total;
+    console.log(this.total);
+    
+    
+  });
+
+   
   
  
   const option ={

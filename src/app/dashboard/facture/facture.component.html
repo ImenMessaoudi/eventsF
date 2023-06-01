@@ -101,7 +101,7 @@
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header pb-0">
-            <h6>Liste facture</h6>
+            <h6>Liste Réservation</h6>
           </div>
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
@@ -112,7 +112,9 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mmebre</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date reservation</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type event</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Activites</th>
+                 
                   <th class="text-secondary opacity-7"></th>
                 </tr>
                 </thead>
@@ -139,6 +141,14 @@
                             <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-bold">{{item.event.type}}</span>
                               </td>
+
+                              <td class="align-middle text-center text-sm">
+                                 
+                                
+                                <span class="text-secondary text-xs font-weight-bold">{{item.status}}</span>
+                              
+                             
+                              </td>
                             <td class="align-middle text-center text-sm">
                                  
                                 
@@ -152,12 +162,12 @@
                                     <a (click)="create(item.id)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                         Confirmer
                                       </a>
-                                      <a (click)="delete(item.reservationId)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                      <a (click)="delete(item.id)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                         Rejeter
                                       </a>
                                 
-                                  
-                                    <a style="margin-left: 15px;" (click)="voucher(item.reservationId)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                   
+                                    <a style="margin-left: 15px;" (click)="voucher(item.id)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                         Voucher
                                       </a>
                                    
@@ -227,7 +237,7 @@
       </tr>
       <tr>
         <th><span contenteditable>Amount Due</span></th>
-        <td><span id="prefix" contenteditable>$</span><span>600.00 DT</span></td>
+        <td><span id="prefix" contenteditable> </span><span>{{total}} DT</span></td>
       </tr>
     </table>
 
@@ -240,10 +250,13 @@
           <th><span contenteditable>Description</span></th>
           <th><span contenteditable>Heure début</span></th>
           <th><span contenteditable>Heure fin</span></th>
+          <th><span contenteditable>Type</span></th>
+          <th><span contenteditable>Montant</span></th>
           
         </tr>
       </thead>
       <tbody>
+         
         <ng-container *ngFor="let item of reservation?.event?.activites">
         
         <tr>
@@ -251,6 +264,8 @@
           <td><span contenteditable>{{item.description}}</span></td>
           <td><span contenteditable>{{item.debut}} H</span></td>
           <td><span contenteditable>{{item.fin}} H</span></td>
+          <td><span contenteditable>{{item.type}} DT</span></td>
+          <td><span contenteditable>{{item.montant}} DT</span></td>
            
         </tr>
       </ng-container>
@@ -276,11 +291,11 @@
     <table class="balance">
       <tr>
         <th><span contenteditable>Total</span></th>
-        <td><span data-prefix>DT</span><span>600.00</span></td>
+        <td><span data-prefix>DT</span><span>{{total}}</span></td>
       </tr>
       <tr>
         <th><span contenteditable>Amount Paid</span></th>
-        <td><span data-prefix>DT</span><span contenteditable>0.00</span></td>
+        <td><span data-prefix>DT</span><span contenteditable>{{total}}</span></td>
       </tr>
     
     </table>

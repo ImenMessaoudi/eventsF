@@ -148,6 +148,19 @@
                                                 required />
                                         </div>
                                     </div>
+                                    <div class="column">
+
+                                        <div class="input-box  ">
+                                            <label>Type</label>
+                                            <input type="text" formControlName="type" placeholder="Enter tYPE"
+                                                required />
+                                        </div>
+                                        <div class="input-box  ">
+                                            <label>Montant</label>
+                                            <input type="text" formControlName="montant"
+                                                placeholder="Enter montant" required />
+                                        </div>
+                                    </div>
 
 
 
@@ -165,7 +178,7 @@
         <h1 style="text-align: center;">Listes des événements</h1>
 
 
-        <section class="design-section" style="margin-top: -220px;">
+        <section class="design-section" style="margin-top: -85px;">
             <div class="timeline">
                     <ng-container *ngFor="let item of activity">
                         <div class="timeline-empty">
@@ -178,8 +191,10 @@
                                  <h3>{{item.title}}</h3>
                             <h3>{{item.debut}} {{item.fin}} </h3>
                             </div>
-                          
+                            <div class="titl"> 
                             <p style="color: black;">{{item.description}}</p>
+                            <h3>{{item.type}} : {{item.montant}} </h3>
+                        </div>
                         </div>
                     </ng-container>
                     

@@ -74,7 +74,14 @@ reserver(eventId:any){
     this.reservationService.addReservation(localStorage.getItem('id'),eventId).subscribe(res=>{
       this.toast.success('Reservation added with success')
       
-    })
+    },(error=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Vous avez déja réserver dans cette événement!',
+         
+      })
+    }))
 
   }
   
