@@ -22,7 +22,9 @@ user:any;
 modalTitle=''
 events:any=[]
 id:any=''
-constructor(private datePipe: DatePipe,private fb:FormBuilder,private toast: HotToastService,private eventService:EventService){}
+constructor(private datePipe: DatePipe,private fb:FormBuilder,
+  private toast: HotToastService,
+  private eventService:EventService){}
   ngOnInit() {
 
     this.getAllEvent()

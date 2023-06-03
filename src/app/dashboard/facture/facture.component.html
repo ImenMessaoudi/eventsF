@@ -101,8 +101,17 @@
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header pb-0">
-            <h6>Liste Réservation</h6>
+            <h6>Liste Réservation</h6><br>
           </div>
+        
+          <div class="search-zone">
+            <form style="    display: flex;width: 100%;    justify-content: space-around;"  [formGroup]="searchBydateForm" (ngSubmit)="serachbyDate()">
+                <input style="    width:   30%;" type="date"  formControlName="start" class="form-control"><br> 
+                <input style="    width: 30%;;" type="date"   formControlName="end" class="form-control"><br>
+                <button type="submit" class="button-filter">Filter</button>
+            </form>
+        </div>
+        
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
               <table class="table align-items-center mb-0">
@@ -159,17 +168,16 @@
                            
                             <td class="align-middle">
                                  
-                                    <a (click)="create(item.id)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Confirmer
-                                      </a>
-                                      <a (click)="delete(item.id)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Rejeter
-                                      </a>
-                                
                                    
-                                    <a style="margin-left: 15px;" (click)="voucher(item.id)" href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Voucher
-                                      </a>
+
+                                      <i class='bx bx-like' (click)="create(item.id)"></i>
+                                   
+                                
+                                      <i class='bx bx-x' (click)="delete(item.id)"> </i>
+                                   
+                                 
+
+                                      <i class='bx bxs-file-pdf' (click)="voucher(item.id)"></i>
                                    
                                      
                             </td>
@@ -213,7 +221,7 @@
 <div class="voucher"   id="content"  *ngIf="reservation!=null" #content>
 
   <header style="margin: 50px;">
-    <h1>Invoice</h1>
+    <h1>Invoice for  : {{eventT}} event</h1>
     <address contenteditable>
       <p>{{reservation?.user.firstName}} {{reservation?.user?.lastName}}</p>
       <p><br>{{reservation?.user?.email}}</p>
@@ -264,7 +272,7 @@
           <td><span contenteditable>{{item.description}}</span></td>
           <td><span contenteditable>{{item.debut}} H</span></td>
           <td><span contenteditable>{{item.fin}} H</span></td>
-          <td><span contenteditable>{{item.type}} DT</span></td>
+          <td><span contenteditable>{{item.type}}</span></td>
           <td><span contenteditable>{{item.montant}} DT</span></td>
            
         </tr>

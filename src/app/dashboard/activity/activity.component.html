@@ -139,12 +139,12 @@
                                     <div class="column">
                                         <div class="input-box">
                                             <label>Start </label>
-                                            <input type="text" formControlName="debut" placeholder="Enter Start hour"
+                                            <input type="time" formControlName="debut" placeholder="Enter Start hour"
                                                 required />
                                         </div>
                                         <div class="input-box">
                                             <label>End</label>
-                                            <input type="text" formControlName="fin" placeholder="Enter end hour"
+                                            <input type="time" formControlName="fin" placeholder="Enter end hour"
                                                 required />
                                         </div>
                                     </div>
@@ -152,16 +152,20 @@
 
                                         <div class="input-box  ">
                                             <label>Type</label>
-                                            <input type="text" formControlName="type" placeholder="Enter tYPE"
-                                                required />
+                                            <div class="select-box">
+                                         <select formControlName="type" >
+                                            <option value="Gratuits">Gratuits</option>
+                                            <option value="Gratuits">Payé</option>
+                                         </select>
+                                         </div>
                                         </div>
                                         <div class="input-box  ">
                                             <label>Montant</label>
-                                            <input type="text" formControlName="montant"
+                                            <input type="number" formControlName="montant"
                                                 placeholder="Enter montant" required />
                                         </div>
                                     </div>
-
+                                       
 
 
                                     <button type="submit"> Save</button>
@@ -179,25 +183,41 @@
 
 
         <section class="design-section" style="margin-top: -85px;">
-            <div class="timeline">
-                    <ng-container *ngFor="let item of activity">
-                        <div class="timeline-empty">
-                        </div>
-        
-                         
-                       
-                        <div class="timeline-component timeline-content">
-                            <div class="titl"> 
-                                 <h3>{{item.title}}</h3>
-                            <h3>{{item.debut}} {{item.fin}} </h3>
-                            </div>
-                            <div class="titl"> 
-                            <p style="color: black;">{{item.description}}</p>
-                            <h3>{{item.type}} : {{item.montant}} </h3>
-                        </div>
-                        </div>
-                    </ng-container>
+            <div class=" ">
+
+                <div class="row" style="margin-top: 20px;">
+                    <ng-container *ngFor="let item of activity; let i = index;">
                     
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4" style="margin-top: 4%;">
+                        <div class="card">
+                          <div class="card-body p-3">
+                            <div class="row">
+                              <div class="col-8">
+                                <div class="numbers">
+                                  <p class="text-sm mb-0 text-uppercase font-weight-bold">{{item.title}}</p>
+                                  <h5 class="font-weight-bolder">
+                                    {{item.montant}}
+                                  </h5>
+                                  <div class="detailss">
+                                  <p class="mb-0">
+                                    <span class="text-success text-sm font-weight-bolder"> </span>
+                                    {{item.debut}} -> {{item.fin}}
+                                  </p>
+ 
+                                  <div class="actions">
+                                    <i class='bx bx-x action' (click)="delete(item.activityId)" ></i>
+                                  </div>
+                                </div>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                </div>
+                   
               
                
             </div>

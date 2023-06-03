@@ -19,5 +19,4 @@ private url="http://localhost:8089/api/activity";
     return this.http.get<any>(this.url+'/events/'+id+'/activity')
    }
 
-   
 }

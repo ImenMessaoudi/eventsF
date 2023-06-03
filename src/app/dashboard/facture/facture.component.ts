@@ -5,6 +5,7 @@ import { FactureService } from 'src/app/services/facture.service';
 import * as html2pdf from 'html2pdf.js' 
 import { ReservationService } from 'src/app/services/reservation.service';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-facture',
   templateUrl: './facture.component.html',
@@ -12,16 +13,23 @@ import Swal from 'sweetalert2';
   encapsulation: ViewEncapsulation.None
 })
 export class FactureComponent {
+  eventT:any;
   reservations:any;
+  searchBydateForm!:FormGroup;
   reservation?:any;
   totala:any=0;
   date:any;
   id:any
   p: number = 1;
   total:any=0;
-  constructor(private eventsService:EventService,private reservatioService:ReservationService,
+  constructor(private fb:FormBuilder,private eventsService:EventService,private reservatioService:ReservationService,
     private factureService:FactureService,private toast: HotToastService) {}
   ngOnInit() {
+    this.searchBydateForm=this.fb.group({
+      start:['',Validators.required],
+      end:['',Validators.required]
+  
+    })
 
     this.date=Date.now()
     this.getAll()
@@ -99,14 +107,18 @@ this.getAll()
 
 public voucher(id): void {  
 
+  this.eventT="";
+
 this.total=0
 
   this.reservation=this.reservations.filter(res=>
       res.id==id
   )
   this.reservation=this.reservation[0]
+
+  this.eventT=this.reservation.event.title
   this.reservation?.event?.activites.forEach(element => {
-    console.log(element);
+ 
     
     this.total=element.montant+this.total;
     console.log(this.total);
@@ -128,5 +140,12 @@ this.total=0
   };
   const content : Element=document.getElementById('content')
     html2pdf().from(content).set(option).save()
+}
+
+serachbyDate(){
+
+  this.reservatioService.getReservation(this.searchBydateForm.value.start,this.searchBydateForm.value.end).subscribe(res=>{
+    this.reservations=res
+  })
 }
 }

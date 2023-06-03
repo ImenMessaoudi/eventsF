@@ -51,4 +51,8 @@ private url="http://localhost:8089/api/event";
   findEventByTitleContainingOrDescriptionContaining(title:any,description:any){
     return this.http.get<any>(this.url+'/findEventByTitleContainingOrDescriptionContaining/'+title+'/'+description)
   }
+  
+  deleteActivity(id:any,activitieId:any){
+    return this.http.delete<any>(this.url+'/deleteActivity/'+id+'/'+activitieId)
+ }
 }

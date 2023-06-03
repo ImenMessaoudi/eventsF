@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-sign-in1',
@@ -13,7 +14,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class SignIn1Component implements OnInit {
   loginForm!: FormGroup;
   constructor(private fb: FormBuilder, private authService: AuthService,
-    private router: Router, private toast: HotToastService) { }
+    private router: Router, private toast: HotToastService,private userService:UserService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -44,7 +45,12 @@ export class SignIn1Component implements OnInit {
     }, (error: any) => {
 
 
-      this.toast.error(error.error.message)
+      this.toast.error(error.error.message);
+
+      this.userService.updateBlocked(this.loginForm.value.username).subscribe(res=>{
+        console.log("okkkkkkk");
+        
+      })
     })
     //send the object to database
 

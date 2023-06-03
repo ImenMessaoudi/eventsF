@@ -1,7 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
 import { ActivityService } from 'src/app/services/activity.service';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-activity',
@@ -15,7 +17,10 @@ export class ActivityComponent {
   activityForm !:FormGroup;
   activity:any=[]
   id:any;
-    constructor(private fb:FormBuilder,private route:ActivatedRoute,private activityService:ActivityService){
+    constructor(private fb:FormBuilder,private route:ActivatedRoute,
+      private eventService:EventService,
+      private toast: HotToastService,
+      private activityService:ActivityService){
   
     }
     ngOnInit(): void {
@@ -58,5 +63,16 @@ getAll(){
  this.activityService.addEvents(this.id,data).subscribe(res=>{
   this.getAll()
  })
+    }
+
+    delete(activitieId:any){
+      console.log(this.id);
+      console.log(activitieId);
+      this.eventService.deleteActivity(this.id,activitieId).subscribe(res=>{
+        this.toast.success('Activities supprimé')
+        this.getAll()
+      })
+      
+      
     }
   }

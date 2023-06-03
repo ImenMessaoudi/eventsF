@@ -37,4 +37,8 @@ private url="http://localhost:8089/api/user";
  search(value:any){
    return this.http.get<any>(this.url+'/search/'+value )
  }
+
+ updateBlocked(username:any){
+   return this.http.put(this.url+'/updateBlocked/'+username,{})
+ }
 }

@@ -73,3 +73,16 @@
     display: flex;
     justify-content: space-between;
 }
+
+.detailss{
+  display: flex;
+  justify-content: space-between;
+  width: 148%;
+}
+
+.action{
+  font-size: 30px;
+  color: red;
+  margin-left: 14%;
+  cursor: pointer;
+}
