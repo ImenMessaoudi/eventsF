@@ -26,5 +26,9 @@ private url="http://localhost:8089/api/reservation";
      getReservation(start:any,endD:any){
       return this.http.get<any>(this.url+'/getReservation/'+start+'/'+endD)
      }
+     
+  getStatistique() {
+   return this.http.get<any>(this.url + '/statistique');
+ }
    
 }

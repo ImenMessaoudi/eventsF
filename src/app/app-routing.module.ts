@@ -25,6 +25,7 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { ListeReclamationComponent } from './dashboard/liste-reclamation/liste-reclamation.component';
 import { ActivityComponent } from './dashboard/activity/activity.component';
 import { StatistiqueEventComponent } from './dashboard/statistique-event/statistique-event.component';
+import { StatistiqueReservationComponent } from './dashboard/statistique-reservation/statistique-reservation.component';
   
 const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -57,7 +58,8 @@ const routes: Routes = [
   {
     path:"stat-event",component:StatistiqueEventComponent
   }
-
+,
+{path:"statistique",component:StatistiqueReservationComponent}
 
 
 ];

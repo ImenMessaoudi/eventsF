@@ -39,6 +39,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgChartsModule } from 'ng2-charts';
 import { StatistiqueEventComponent } from './dashboard/statistique-event/statistique-event.component';
+import { StatistiqueReservationComponent } from './dashboard/statistique-reservation/statistique-reservation.component';
 
  
  
@@ -72,7 +73,7 @@ import { StatistiqueEventComponent } from './dashboard/statistique-event/statist
     ReclamationComponent,
     ListeReclamationComponent,
     ActivityComponent, 
-    StatistiqueEventComponent
+    StatistiqueEventComponent, StatistiqueReservationComponent
   ],
   imports: [CommonModule,
     BrowserModule,
