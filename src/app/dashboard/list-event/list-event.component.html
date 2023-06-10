@@ -199,8 +199,8 @@
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
               <table class="table align-items-center justify-content-center mb-0">
-                <thead>
-                <tr>
+                <thead>    <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Image</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Start Date</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">End Date</th>
@@ -213,6 +213,10 @@
                 <tbody>
               <ng-container *ngFor="let item of events">
                 <tr>
+                  <td>
+                    <img src="http://localhost:8089/api/event/event/{{item?.id}}" style="width: 85px;" alt="Profile Image" class="profile">
+             
+                  </td>
                   <td>
                     <div class="d-flex px-2">
                       
@@ -326,7 +330,22 @@
                                     <label>Descrition</label>
                                     <input type="text" placeholder="Enter description" required  formControlName="description"/>
                                   </div>
-                                
+
+                                  <div class="input-box">
+                                    <label>Image</label>
+                                    <input type="file" placeholder="Enter title"  (change)="onSelectFile($event)" />
+                                    <img [src]="imgURL" height="200" *ngIf="imgURL">
+                                  </div>
+                                  <div class="column">
+                                    <div class="input-box">
+                                      <label>Longitude</label>
+                                      <input type="text" placeholder="Enter lang" formControlName="lang" />
+                                    </div>
+                                    <div class="input-box">
+                                      <label>Latitude</label>
+                                      <input type="text" placeholder="Enter lat" formControlName="lat" />
+                                    </div>
+                                  </div>
                                   <button type="submit" (click)="onSubmit()">Submit</button>
                                 </form>
 

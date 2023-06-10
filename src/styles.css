@@ -1,3 +1,5 @@
+@import "../node_modules/leaflet/dist/leaflet.css";
+
 @import "assets/css/gApi.css";
 @import "assets/css/bootstrap.min.css";
 @import "assets/css/bootstrap-datepicker.css";

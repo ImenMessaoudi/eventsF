@@ -24,6 +24,7 @@ import { UpdateUserComponent } from './dashboard/update-user/update-user.compone
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { ListeReclamationComponent } from './dashboard/liste-reclamation/liste-reclamation.component';
 import { ActivityComponent } from './dashboard/activity/activity.component';
+import { StatistiqueEventComponent } from './dashboard/statistique-event/statistique-event.component';
   
 const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -52,6 +53,10 @@ const routes: Routes = [
   {path: "reclamation", component: ReclamationComponent}, 
   {path: "reclamations/:id", component: ListeReclamationComponent},
   {path: "activity/:id", component: ActivityComponent},
+
+  {
+    path:"stat-event",component:StatistiqueEventComponent
+  }
 
 
 

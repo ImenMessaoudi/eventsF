@@ -14,5 +14,9 @@ private url="http://localhost:8089/api/facture";
     return this.http.post<any>(this.url+'/users/'+id+'/facture/'+resId,resource)
  }
 
+ sendFacture(to:any,attechment:any){
+  return this.http.post<any>(this.url+'/sendFacture/'+attechment,to)
+}
+
    
 }

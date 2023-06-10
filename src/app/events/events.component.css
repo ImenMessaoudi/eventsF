@@ -241,6 +241,13 @@ i{
     margin-top: -10px;
 }
 
+.map-container {
+    position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    margin: 30px;
+    height: 40% !important;
+    }
+
 
   
 

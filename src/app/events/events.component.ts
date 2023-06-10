@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ReservationService } from '../services/reservation.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import * as L from 'leaflet';
+import {tileLayer,latLng} from 'leaflet';
 
 @Component({
   selector: 'app-events',
@@ -11,6 +13,7 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent {
+  
   events:any=[]
   event:any
   searchForm!:FormGroup;
@@ -20,13 +23,26 @@ export class EventsComponent {
 @ViewChild('myModal', { static: false }) myModal: ElementRef ;
 elm:any= HTMLElement;
  
-  center: {lat: 40, lng: -20}
-  zoom: 4
+options:any={ 
+  layers:[tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  opacity: 0.7,
+  maxZoom: 19,
+  detectRetina: true,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  })],
+  zoom:90,
+  center:latLng(1.3521,103.8189)
+  };
+  onMapReady(map: L.Map) {}
  
 constructor(private fb:FormBuilder,private eventService:EventService,
   private reservationService:ReservationService,
   private toast: HotToastService) {
-
+ (L.icon({
+  iconUrl: 'assets/mark.png',
+   
+  popupAnchor: [13, 0],
+}))
   
   
 }
@@ -118,4 +134,7 @@ reserver(eventId:any){
   }
   
 }
-}
+} 
+
+ 
+

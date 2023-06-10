@@ -48,8 +48,6 @@ export class SignIn1Component implements OnInit {
       this.toast.error(error.error.message);
 
       this.userService.updateBlocked(this.loginForm.value.username).subscribe(res=>{
-        console.log("okkkkkkk");
-        
       })
     })
     //send the object to database

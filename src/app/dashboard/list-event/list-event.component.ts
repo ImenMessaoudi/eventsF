@@ -21,7 +21,10 @@ isLoged:any;
 user:any;
 modalTitle=''
 events:any=[]
-id:any=''
+id:any='';
+imgURL:any
+imagePath!: string;
+@ViewChild('fileInput') fileInput: any;
 constructor(private datePipe: DatePipe,private fb:FormBuilder,
   private toast: HotToastService,
   private eventService:EventService){}
@@ -37,12 +40,40 @@ constructor(private datePipe: DatePipe,private fb:FormBuilder,
             endDate:['',Validators.required],
             lieu:['',Validators.required],
             type:['Formation',Validators.required],
+            lang:['',Validators.required],
+            lat:['',Validators.required],
 
     })
     const element1 = document.getElementById("header1");
     element1.setAttribute("hidden","true");
     const element2 = document.getElementById("ftco-footer");
     element2.setAttribute("hidden","true");
+  }
+
+  onSelectFile(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.imagePath= event.target.files[0];
+      this.imgURL = file;
+      // this.f['profile'].setValue(file);
+
+      var mimeType = event.target.files[0].type;
+      if (mimeType.match(/image\/*/) == null) {
+        
+        return;
+      }
+
+      var reader = new FileReader();
+
+      this.imagePath = file;
+      reader.readAsDataURL(file);
+      reader.onload = (_event) => {
+        this.imgURL = reader.result;
+      }
+    
+
+
+    }
   }
   ngOnDestroy() {
     const element1 = document.getElementById("header1");
@@ -89,6 +120,10 @@ this.eventForm.patchValue({
  }
 
  onSubmit(){
+  const formData = new FormData();
+  formData.append('event', JSON.stringify(this.eventForm.value));
+  formData.append('file',  this.imagePath);
+
 if(this.id!=''){
   this.eventService.updateEvent(this.id,this.eventForm.value).subscribe(res=>{
     this.close();
@@ -99,7 +134,7 @@ if(this.id!=''){
 }else{
   
  if(this.eventForm.valid){
-  this.eventService.addEvent(this.eventForm.value).subscribe(res=>{
+  this.eventService.addEvent(formData).subscribe(res=>{
     this.close();
     this.eventForm.reset()
     this.toast.success('Event added with success!!');

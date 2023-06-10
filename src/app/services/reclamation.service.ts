@@ -17,4 +17,7 @@ private url="http://localhost:8089/api/reclamation";
   return this.http.get<any>(this.url+'/users/'+id+'/reclamations')
  }
    
+ filterReclamation(start:any,end:any){
+  return this.http.get<any>(this.url+'/filterByDate/'+start+'/'+end)
+ }
 }

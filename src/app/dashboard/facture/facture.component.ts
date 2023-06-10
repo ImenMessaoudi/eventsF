@@ -126,8 +126,7 @@ this.total=0
     
   });
 
-   
-  
+ console.log(this.reservation.user.email);
  
   const option ={
     filename:"Voucher-"+Date.now()+".pdf",
@@ -138,6 +137,12 @@ this.total=0
     jsPDF:{orientation:'portrait'}
 
   };
+  console.log(option.filename);
+  console.log();
+  this.factureService.sendFacture(this.reservation.user.email,option.filename).subscribe(res=>{
+    this.toast.success("Facture envoyé avec success")
+  })
+  
   const content : Element=document.getElementById('content')
     html2pdf().from(content).set(option).save()
 }

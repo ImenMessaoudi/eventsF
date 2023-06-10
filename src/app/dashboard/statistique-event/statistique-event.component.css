@@ -1,0 +1,9 @@
+canvas{
+    
+    display: block !important;
+    box-sizing: border-box !important;
+    height: 380px !important;
+    width: 522px !important;
+    /* margin-left: 11% !important; */
+    margin-top: 0% !important;
+}

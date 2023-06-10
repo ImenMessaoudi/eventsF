@@ -36,6 +36,12 @@ import { ReclamationComponent } from './reclamation/reclamation.component';
 import { ActivityComponent } from './dashboard/activity/activity.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NgChartsModule } from 'ng2-charts';
+import { StatistiqueEventComponent } from './dashboard/statistique-event/statistique-event.component';
+
+ 
+ 
 
 @NgModule({
   declarations: [
@@ -65,7 +71,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     UpdateUserComponent,
     ReclamationComponent,
     ListeReclamationComponent,
-    ActivityComponent
+    ActivityComponent, 
+    StatistiqueEventComponent
   ],
   imports: [CommonModule,
     BrowserModule,
@@ -77,6 +84,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     HotToastModule.forRoot(),
     NgxPaginationModule,
     GoogleMapsModule,
+    LeafletModule,
+    NgChartsModule
 
   ],
   providers: [DatePipe,FactureService,ReclamationService],
