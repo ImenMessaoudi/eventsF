@@ -117,7 +117,7 @@ this.total=0
   this.reservation=this.reservation[0]
 
   this.eventT=this.reservation.event.title
-  this.reservation?.event?.activites.forEach(element => {
+  this.reservation?.activites.forEach(element => {
  
     
     this.total=element.montant+this.total;
@@ -138,13 +138,15 @@ this.total=0
 
   };
   console.log(option.filename);
-  console.log();
-  this.factureService.sendFacture(this.reservation.user.email,option.filename).subscribe(res=>{
-    this.toast.success("Facture envoyé avec success")
-  })
-  
   const content : Element=document.getElementById('content')
     html2pdf().from(content).set(option).save()
+
+    setTimeout(() => {
+      this.factureService.sendFacture(this.reservation.user.email,option.filename).subscribe(res=>{
+        this.toast.success("Facture envoyé avec success")
+      })
+    }, 3000)
+    
 }
 
 serachbyDate(){

@@ -40,6 +40,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgChartsModule } from 'ng2-charts';
 import { StatistiqueEventComponent } from './dashboard/statistique-event/statistique-event.component';
 import { StatistiqueReservationComponent } from './dashboard/statistique-reservation/statistique-reservation.component';
+import { ActiviteListComponent } from './activite-list/activite-list.component';
+import { MesReservationComponent } from './dashboard/mes-reservation/mes-reservation.component';
 
  
  
@@ -73,7 +75,10 @@ import { StatistiqueReservationComponent } from './dashboard/statistique-reserva
     ReclamationComponent,
     ListeReclamationComponent,
     ActivityComponent, 
-    StatistiqueEventComponent, StatistiqueReservationComponent
+    StatistiqueEventComponent, 
+    StatistiqueReservationComponent,
+     ActiviteListComponent,
+     MesReservationComponent
   ],
   imports: [CommonModule,
     BrowserModule,

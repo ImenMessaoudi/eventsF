@@ -20,32 +20,18 @@ export class StatistiqueReservationComponent {
     { data: [], label: 'Les utilisateur  le plus réservé' }
   ];
   
-constructor(private reservationService:ReservationService){
-
-}
+constructor(private reservationService:ReservationService){}
 
 ngOnInit(): void {
-
-
   this.reservationService.getStatistique().subscribe(res=>{
-    
     let i=0
     for(let i=0;i<res.length;i++){
         let arr=res[i];
         console.log(arr[0]);
-        
         this.barChartLabels.push(arr[0].username)
-       
         this.barChartData[0].data.push(arr[1])
-
         console.log(this.barChartData);
-        console.log(this.barChartLabels);
-        
-       
-         
-        
-      
-      
+        console.log(this.barChartLabels);      
     }
     
   })

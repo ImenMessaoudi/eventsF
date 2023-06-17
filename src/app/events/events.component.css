@@ -252,10 +252,11 @@ i{
   
 
 .modal-content{
+ 
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 128% !important;
+    width: 172% !important;
     color: var(--bs-modal-color);
     pointer-events: auto;
     background-color: var(--bs-modal-bg);
@@ -263,7 +264,7 @@ i{
     border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
     border-radius: var(--bs-modal-border-radius);
     outline: 0;
-    left: -20% !important;
+    left: -35% !important;
   }
   .close{
     border: none;
@@ -303,3 +304,32 @@ i{
     margin-top: -50px;
 
     }
+
+    #map {
+        height: 400px;
+        width: 100%;
+        max-width: 600px;
+      }
+      
+.action{
+    font-size: 30px;
+    color: red;
+    margin-left: 14%;
+    cursor: pointer;
+  }
+  
+  .liste-a{
+    
+      /* display: grid; */
+     
+    margin-top: 20px !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: -20px !important;
+    grid-auto-rows: minmax(100px, auto) !important;
+    WIDTH: 111% !important;
+    margin-left: 167px;
+  }
+  i{
+    cursor: pointer;
+  }

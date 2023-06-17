@@ -20,7 +20,8 @@ export class ActivityComponent {
     constructor(private fb:FormBuilder,private route:ActivatedRoute,
       private eventService:EventService,
       private toast: HotToastService,
-      private activityService:ActivityService){
+      private activityService:ActivityService,
+      ){
   
     }
     ngOnInit(): void {
@@ -61,6 +62,8 @@ getAll(){
         type:this.activityForm.value.type
  }
  this.activityService.addEvents(this.id,data).subscribe(res=>{
+  this.toast.success("Activity added with success")
+  this.activityForm.reset()
   this.getAll()
  })
     }
@@ -74,5 +77,12 @@ getAll(){
       })
       
       
+    }
+    onChanges(val:any){
+      if(val=="Gratuits"){
+        this.activityForm.patchValue({montant:0})
+      }else{
+        this.activityForm.patchValue({montant:""})
+      }
     }
   }

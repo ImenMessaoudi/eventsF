@@ -173,3 +173,66 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade my-modal" tabindex="-1" role="dialog" #myactivity >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            
+   <h5 style="text-align: center;">Event activity</h5>
+           <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div style="margin-left: -160px;">
+
+          <div class="row liste-a" style="margin-top: 20px;" *ngIf="event?.activites.length >0">
+              <ng-container *ngFor="let item of event?.activites; let i = index;">
+              
+              <div   style="margin-top: 4%;width: 50%;" *ngIf="item.montant > 0">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-8">
+                          <div class="numbers">
+                            <p class="text-sm mb-0 text-uppercase font-weight-bold">{{item.title}}</p>
+                            <h5 class="font-weight-bolder">
+                              {{item.montant}}DT
+                            </h5>
+                            <div class="detailss">
+                            <p class="mb-0">
+                              <span class="text-success text-sm font-weight-bolder"> </span>
+                              {{item.debut}} -> {{item.fin}}
+                            </p>
+
+                            <div class="actions">
+                              
+                              <i *ngIf="!exist(item.activityId)" class='bx bx-cart-add' (click)="add(item.activityId)"></i>
+                              <i style="    color: red;" *ngIf="exist(item.activityId)" class='bx bx-x' (click)="delete(item.activityId)"></i>
+                              
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+          </div>
+
+          <p style="text-align: center;" *ngIf="event?.activites.length ==0">Pas des activites</p>
+             
+        
+         
+      </div>
+      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary"  (click)="booking()" >Réserver
+          </button>
+          <button type="button" class="btn btn-secondary"  (click)="close()" >Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

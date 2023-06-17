@@ -26,6 +26,8 @@ import { ListeReclamationComponent } from './dashboard/liste-reclamation/liste-r
 import { ActivityComponent } from './dashboard/activity/activity.component';
 import { StatistiqueEventComponent } from './dashboard/statistique-event/statistique-event.component';
 import { StatistiqueReservationComponent } from './dashboard/statistique-reservation/statistique-reservation.component';
+import { ActiviteListComponent } from './activite-list/activite-list.component';
+import { MesReservationComponent } from './dashboard/mes-reservation/mes-reservation.component';
   
 const routes: Routes = [
   {path: "home", component: HomeComponent},
@@ -54,12 +56,15 @@ const routes: Routes = [
   {path: "reclamation", component: ReclamationComponent}, 
   {path: "reclamations/:id", component: ListeReclamationComponent},
   {path: "activity/:id", component: ActivityComponent},
+ 
 
   {
     path:"stat-event",component:StatistiqueEventComponent
   }
 ,
-{path:"statistique",component:StatistiqueReservationComponent}
+{path:"statistique",component:StatistiqueReservationComponent},
+{path:"mes-réservation",component:MesReservationComponent},
+{path: "list-activity/:eventId", component: ActiviteListComponent},
 
 
 ];

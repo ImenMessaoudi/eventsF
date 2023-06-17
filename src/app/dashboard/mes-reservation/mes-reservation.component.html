@@ -36,7 +36,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/facture">
+          <a class="nav-link " routerLink="/facture">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
             </div>
@@ -52,16 +52,17 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/mes-réservation">
+          <a class="nav-link active" routerLink="/mes-réservation">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Mes réservations</span>
           </a>
         </li>
+      
+         
      
       </ul>
-    
     </div>
     
   </aside>
@@ -72,9 +73,9 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
           <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" routerLink="/home">Dashboard</a></li>
-          <li class="breadcrumb-item text-sm text-white active" aria-current="page">Réservation</li>
+          <li class="breadcrumb-item text-sm text-white active" aria-current="page">Mes Réservations</li>
         </ol>
-        <h6 class="font-weight-bolder text-white mb-0">Réservation</h6>
+        <h6 class="font-weight-bolder text-white mb-0">Mes Réservations</h6>
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -96,13 +97,6 @@
             <h6>Liste Réservation</h6><br>
           </div>
         
-          <div class="search-zone">
-            <form style="    display: flex;width: 100%;    justify-content: space-around;"  [formGroup]="searchBydateForm" (ngSubmit)="serachbyDate()">
-                <input style="    width:   30%;" type="date"  formControlName="start" class="form-control"><br> 
-                <input style="    width: 30%;;" type="date"   formControlName="end" class="form-control"><br>
-                <button type="submit" class="button-filter">Filter</button>
-            </form>
-        </div>
         
           <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
@@ -114,14 +108,13 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date reservation</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type event</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Activites</th>
-                 
-                  <th class="text-secondary opacity-7"></th>
+                   
+                  <th class="text-secondary opacity-7">Activites</th>
                 </tr>
                 </thead>
                 <tbody>
                     <ng-container *ngFor="let item of reservations| paginate: { itemsPerPage: 10, currentPage: p }">
-                        <tr>
+                        <tr *ngIf="id==item.user.id">
                             <td>
                               <div class="d-flex px-2 py-1">
                                  
@@ -158,21 +151,7 @@
                            
                             </td>
                            
-                            <td class="align-middle">
-                                 
-                                   
-
-                                      <i class='bx bx-like' (click)="create(item.id)"></i>
-                                   
-                                
-                                      <i class='bx bx-x' (click)="delete(item.id)"> </i>
-                                   
-                                 
-
-                                      <i class='bx bxs-file-pdf' (click)="voucher(item.id)"></i>
-                                   
-                                     
-                            </td>
+                            
                           </tr>
                         
                     </ng-container>
@@ -209,117 +188,5 @@
     </footer>
   </div>
 </main>
-<div class="v" style="display: none;">
-<div class="voucher"   id="content"  *ngIf="reservation!=null" #content>
-
-  <header style="margin: 50px;">
-    <h1>Invoice for  : {{eventT}} event</h1>
-    <address contenteditable>
-      <p>{{reservation?.user.firstName}} {{reservation?.user?.lastName}}</p>
-      <p><br>{{reservation?.user?.email}}</p>
-      <p>{{reservation?.user?.phone}}</p>
-    </address>
-     
-  </header>
-  <article>
-    
-    <address contenteditable style="padding-left: 40px;">
-      <p>Responsable finaciaire<br>Admin admin</p>
-    </address>
-    <table class="meta">
-      <tr>
-        <th><span contenteditable>Invoice #</span></th>
-        <td><span contenteditable>101138</span></td>
-      </tr>
-      <tr>
-        <th><span contenteditable>Date</span></th>
-        <td><span contenteditable>{{reservation.dateReservation|date:'dd-MM-yyyy'}}</span></td>
-      </tr>
-      <tr>
-        <th><span contenteditable>Amount Due</span></th>
-        <td><span id="prefix" contenteditable> </span><span>{{total}} DT</span></td>
-      </tr>
-    </table>
-
-   
-    <table class="inventory">
-      
-      <thead>
-        <tr>
-          <th><span contenteditable>Activity</span></th>
-          <th><span contenteditable>Description</span></th>
-          <th><span contenteditable>Heure début</span></th>
-          <th><span contenteditable>Heure fin</span></th>
-          <th><span contenteditable>Type</span></th>
-          <th><span contenteditable>Montant</span></th>
-          
-        </tr>
-      </thead>
-      <tbody>
-         
-        <ng-container *ngFor="let item of reservation?.event?.activites">
-        
-        <tr *ngIf="item.montant==0">
-          <td><a class="cut">-</a><span contenteditable>{{item.title}}</span></td>
-          <td><span contenteditable>{{item.description}}</span></td>
-          <td><span contenteditable>{{item.debut}} H</span></td>
-          <td><span contenteditable>{{item.fin}} H</span></td>
-          <td><span contenteditable>{{item.type}}</span></td>
-          <td><span contenteditable>{{item.montant}} DT</span></td>
-           
-        </tr>
-      </ng-container>
-
-      <h3 style="font-size: 12px;">Activites Payes</h3>
-      <ng-container *ngFor="let item of reservation.activites">
-        
-        <tr  >
-          <td><a class="cut">-</a><span contenteditable>{{item.title}}</span></td>
-          <td><span contenteditable>{{item.description}}</span></td>
-          <td><span contenteditable>{{item.debut}} H</span></td>
-          <td><span contenteditable>{{item.fin}} H</span></td>
-          <td><span contenteditable>{{item.type}}</span></td>
-          <td><span contenteditable>{{item.montant}} DT</span></td>
-           
-        </tr>
-      </ng-container>
-<!--
-        <tr>
-          <td><a class="cut">-</a><span contenteditable>Back End Consultation</span></td>
-          <td><span contenteditable>Experience Review</span></td>
-          <td><span data-prefix>$</span><span contenteditable>150.00</span></td>
-          <td><span contenteditable>4</span></td>
-          <td><span data-prefix>$</span><span>600.00</span></td>
-        </tr>
-       
-        <tr>
-          <td><a class="cut">-</a><span contenteditable>Mongodb workshop</span></td>
-          <td><span contenteditable>Experience Review</span></td>
-          <td><span data-prefix>$</span><span contenteditable>150.00</span></td>
-          <td><span contenteditable>4</span></td>
-          <td><span data-prefix>$</span><span>600.00</span></td>
-        </tr> -->
-      </tbody>
-    </table>
-    <!---->
-    <table class="balance">
-      <tr>
-        <th><span contenteditable>Total</span></th>
-        <td><span data-prefix>DT</span><span>{{total}}</span></td>
-      </tr>
-      <tr>
-        <th><span contenteditable>Amount Paid</span></th>
-        <td><span data-prefix>DT</span><span contenteditable>{{total}}</span></td>
-      </tr>
-    
-    </table>
-  </article>
-  <aside>
-    <h1><span contenteditable>Additional Notes</span></h1>
-    <div contenteditable>
-      <p style="text-align: center;">A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
-    </div>
-  </aside>
-
-</div>
-</div>
+ 
+ 
