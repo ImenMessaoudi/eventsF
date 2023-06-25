@@ -4,6 +4,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { EventService } from 'src/app/services/event.service';
 import Swal from 'sweetalert2'
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-event',
@@ -26,7 +27,7 @@ imgURL:any
 imagePath!: string;
 @ViewChild('fileInput') fileInput: any;
 constructor(private datePipe: DatePipe,private fb:FormBuilder,
-  private toast: HotToastService,
+  private toast: HotToastService,private router: Router,
   private eventService:EventService){}
   ngOnInit() {
 
@@ -139,6 +140,7 @@ if(this.id!=''){
     this.eventForm.reset()
     this.toast.success('Event added with success!!');
     this.getAllEvent()
+    this.imgURL=''
   })
  }
 }
@@ -166,5 +168,10 @@ if(this.id!=''){
       })
     }
   })
+ }
+ logout(){
+  localStorage.removeItem('id')
+  localStorage.removeItem('token')
+  this.router.navigate(['/login'])
  }
 }

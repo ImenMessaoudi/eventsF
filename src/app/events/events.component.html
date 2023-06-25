@@ -165,7 +165,9 @@
           
         </div>
         </div>
-        <div class="map-container" leaflet     [leafletOptions]="options"      ></div>
+        <div
+         class="map-container" leaflet   
+          [leafletOptions]="options"      ></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary"  (click)="close()" >Close
           </button>
@@ -180,7 +182,7 @@
         <div class="modal-header">
             
    <h5 style="text-align: center;">Event activity</h5>
-           <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+           <button type="button" class="close" (click)="closeM()" aria-label="Close"><span aria-hidden="true">&times;</span>
            </button>
         </div>
         <div style="margin-left: -160px;">

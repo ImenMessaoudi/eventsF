@@ -61,6 +61,15 @@
             <span class="nav-link-text ms-1">Mes réservations</span>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" (click)="logout()">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Logout</span>
+          </a>
+        </li>
      
       </ul>
     </div>
@@ -92,7 +101,8 @@
   <div class="container-fluid py-4">
     <div class="row">
         <div class="col chart-wrapper">
-            
+
+            <H3>L'utilisateur le plus réserver</H3>
             <div class="chart" *ngIf="barChartLabels.length > 0">
                 <canvas baseChart 
                 height="100"
@@ -107,6 +117,25 @@
             </div>
           </div>
     </div>
+
+    <div class="row">
+      <div class="col chart-wrapper">
+
+          <H3>Le resérvation le plus chére</H3>
+          <div class="chart" *ngIf="barChartLabels1.length > 0">
+              <canvas baseChart 
+              height="100"
+              width="100"
+              [datasets]="barChartData1"
+              [labels]="barChartLabels1"
+              [options]="barChartOptions1"
+              [plugins]="barChartPlugins1"
+              [legend]="barChartLegend1"
+              [type]="'bar'">
+            </canvas>
+          </div>
+        </div>
+  </div>
   
     <footer class="footer pt-3  ">
       <div class="container-fluid">

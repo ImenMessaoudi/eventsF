@@ -3,6 +3,7 @@ import { HotToastService } from '@ngneat/hot-toast';
  import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import * as html2pdf from 'html2pdf.js' 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-membre',
@@ -13,7 +14,7 @@ import * as html2pdf from 'html2pdf.js'
 export class ListMembreComponent implements OnInit,OnDestroy{
   users:any=[]
   p: number = 1;value:any
-  constructor(private userService:UserService,private toast: HotToastService){}
+  constructor(private userService:UserService,private toast: HotToastService,private router: Router){}
   ngOnInit() {
   this.getAll()
     const element1 = document.getElementById("header1");
@@ -107,6 +108,12 @@ public pdf( ): void {
     };
     const content : Element=document.getElementById('content')
       html2pdf().from(content).set(option).save()
+  }
+
+  logout(){
+    localStorage.removeItem('id')
+    localStorage.removeItem('token')
+    this.router.navigate(['/login'])
   }
 }
 

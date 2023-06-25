@@ -85,4 +85,10 @@ getAll(){
         this.activityForm.patchValue({montant:""})
       }
     }
+
+    logout(){
+      localStorage.removeItem('id')
+      localStorage.removeItem('token')
+      
+    }
   }

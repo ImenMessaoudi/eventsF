@@ -1,26 +1,27 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EventService } from 'src/app/services/event.service';
-import { ReservationService } from 'src/app/services/reservation.service';
+import { HotToastService } from '@ngneat/hot-toast';
+import { PayementService } from 'src/app/services/payement.service';
 
 @Component({
-  selector: 'app-mes-reservation',
-  templateUrl: './mes-reservation.component.html',
-  styleUrls: ['./mes-reservation.component.css']
+  selector: 'app-payement',
+  templateUrl: './payement.component.html',
+  styleUrls: ['./payement.component.css']
 })
-export class MesReservationComponent {
+export class PayementComponent {
+
   paymentHandler: any = null;
   eventT:any;
   reservations:any;
-  searchBydateForm!:FormGroup;
-  reservation?:any;
+ 
+  payements?:any;
+  reservation:any
   totala:any=0;
   date:any;
   id:any
   p: number = 1;
   total:any=0;
-  constructor( private eventsService:EventService,private reservatioService:ReservationService,private router: Router) {}
+  constructor( private payementService:PayementService,private toast: HotToastService,private router: Router) {}
   ngOnInit() {
     this.invokeStripe();
     this.id=localStorage.getItem('id')
@@ -35,25 +36,32 @@ const element2 = document.getElementById("ftco-footer");
 element2.setAttribute("hidden","true");
 }
 
-makePayment(amount: any) {
+makePayment(id: any) {
+  this.toast.success("Payé avec success")
+  this.payementService.updateStatus(id).subscribe(res=>{
+    this.getAll()
+  })
+this.reservation=this.payements.filter(item=>item.id==id);
+console.log(this.reservation);
+
   const paymentHandler = (<any>window).StripeCheckout.configure({
     key: 'pk_test_51NMCEWHDx5bfiokZNuDPg3ByjbPBGVu6QHqEJMpZtFnrEoZjKMkZtl01uUhGCQ5z7UNNeZbBMyIYqwqyPhRnWuNV0028S4DcCJ',
     locale: 'auto',
     token: function (stripeToken: any) {
-      console.log(stripeToken);
-      alert('Stripe token generated!');
+    
     },
   });
   paymentHandler.open({
-    name: 'Positronx',
-    description: '3 widgets',
-    amount: amount * 100,
+    name: "Payement of event : "+this.reservation[0].reservation.event.title,
+    description: this.reservation[0].reservation.activites.length + "Activities(Payé)",
+    amount: this.reservation[0].sum * 100,
   });
+  
 }
 getAll(){
   
-this.reservatioService.getAllReservation().subscribe(res=>{
-  this.reservations=res;
+this.payementService.getAllPayment().subscribe(res=>{
+  this.payements=res;
 })
 }
 ngOnDestroy() {
@@ -87,6 +95,14 @@ invokeStripe() {
 }
  
 
+
+
+logout(){
+  localStorage.removeItem('id')
+  localStorage.removeItem('token')
+  this.router.navigate(['/login'])
+}
  
  
 }
+

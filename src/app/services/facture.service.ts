@@ -10,8 +10,8 @@ export class FactureService {
 private url="http://localhost:8089/api/facture";
   constructor(private http:HttpClient) { }
 
- addFacture(id:any,resId:any,resource:any){
-    return this.http.post<any>(this.url+'/users/'+id+'/facture/'+resId,resource)
+ addFacture(resId:any,id:any,sum:any){
+    return this.http.post<any>(this.url+'/api/facture/'+resId+'/'+id,sum)
  }
 
  sendFacture(to:any,attechment:any){

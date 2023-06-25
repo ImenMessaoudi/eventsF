@@ -86,6 +86,12 @@ close(): void {
        this.elm.style.width = '0';
      }, 75);
  }
+ closeM(){
+  this.elmA.classList.remove('show');
+  setTimeout(() => {
+    this.elmA.style.width = '0';
+  }, 75);
+ }
  open(id): void {
    console.log(id);
    
@@ -202,6 +208,13 @@ this.reservationService.reserver(localStorage.getItem('id'),this.event.id,this.a
   }
   
 }
+
+logout(){
+  localStorage.removeItem('id')
+  localStorage.removeItem('token')
+  this.router.navigate(['/login'])
+}
+ 
 } 
 
  

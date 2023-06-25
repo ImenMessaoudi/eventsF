@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReclamationService } from 'src/app/services/reclamation.service';
 
 @Component({
@@ -14,7 +14,10 @@ export class ListeReclamationComponent {
   id:any;
   p: number = 1;
   searchBydateForm!:FormGroup;
-    constructor(private fb:FormBuilder,private route:ActivatedRoute,private reclamationService:ReclamationService){
+    constructor(private fb:FormBuilder,private route:ActivatedRoute,
+      private reclamationService:ReclamationService,
+      private router: Router
+      ){
   
     }
     ngOnInit(): void {
@@ -48,5 +51,11 @@ serachbyDate(){
     this.reclamations=res
   })
 }
+
+logout(){
+  localStorage.removeItem('id')
+  localStorage.removeItem('token')
+  this.router.navigate(['/login'])
+ }
   }
   

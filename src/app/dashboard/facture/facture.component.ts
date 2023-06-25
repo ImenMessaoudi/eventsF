@@ -6,6 +6,7 @@ import * as html2pdf from 'html2pdf.js'
 import { ReservationService } from 'src/app/services/reservation.service';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-facture',
   templateUrl: './facture.component.html',
@@ -18,12 +19,13 @@ export class FactureComponent {
   searchBydateForm!:FormGroup;
   reservation?:any;
   totala:any=0;
+  totalF:any=0;
   date:any;
   id:any
   p: number = 1;
   total:any=0;
   constructor(private fb:FormBuilder,private eventsService:EventService,private reservatioService:ReservationService,
-    private factureService:FactureService,private toast: HotToastService) {}
+    private factureService:FactureService,private toast: HotToastService,private router: Router) {}
   ngOnInit() {
     this.searchBydateForm=this.fb.group({
       start:['',Validators.required],
@@ -79,6 +81,23 @@ console.log(id);
 
  
 create(id){
+  
+this.totalF=0
+
+this.reservation=this.reservations.filter(res=>
+    res.id==id
+)
+this.reservation=this.reservation[0]
+
+this.eventT=this.reservation.event.title
+this.reservation?.activites.forEach(element => {
+
+  
+  this.totalF=element.montant+this.totalF;
+  console.log(this.totalF);
+  
+  
+});
   console.log(id);
   
   let data={
@@ -93,7 +112,7 @@ create(id){
 this.reservation=this.reservation[0]
 console.log(this.reservation.user.id);
 
-  this.factureService.addFacture(this.reservation.user.id,id,data).subscribe(res=>{
+  this.factureService.addFacture(id,this.reservation.user.id,this.totalF).subscribe(res=>{
 
 this.toast.success('Reservation created with success');
 this.getAll()
@@ -155,4 +174,10 @@ serachbyDate(){
     this.reservations=res
   })
 }
+
+logout(){
+  localStorage.removeItem('id')
+  localStorage.removeItem('token')
+  this.router.navigate(['/login'])
+ }
 }

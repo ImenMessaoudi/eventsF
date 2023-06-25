@@ -42,6 +42,9 @@ import { StatistiqueEventComponent } from './dashboard/statistique-event/statist
 import { StatistiqueReservationComponent } from './dashboard/statistique-reservation/statistique-reservation.component';
 import { ActiviteListComponent } from './activite-list/activite-list.component';
 import { MesReservationComponent } from './dashboard/mes-reservation/mes-reservation.component';
+import { ResetPasswordComponent } from './profile/reset-password/reset-password.component';
+import { ForgetPasswordComponent } from './profile/forget-password/forget-password.component';
+import { PayementComponent } from './dashboard/payement/payement.component';
 
  
  
@@ -78,7 +81,10 @@ import { MesReservationComponent } from './dashboard/mes-reservation/mes-reserva
     StatistiqueEventComponent, 
     StatistiqueReservationComponent,
      ActiviteListComponent,
-     MesReservationComponent
+     MesReservationComponent,
+     ResetPasswordComponent,
+     ForgetPasswordComponent,
+     PayementComponent
   ],
   imports: [CommonModule,
     BrowserModule,

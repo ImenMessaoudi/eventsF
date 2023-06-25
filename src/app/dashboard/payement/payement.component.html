@@ -52,13 +52,30 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/mes-réservation">
+          <a class="nav-link" routerLink="/mes-réservation">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Mes réservations</span>
           </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link active" routerLink="/payement">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Payement</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" (click)="logout()">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Logout</span>
+            </a>
+          </li>
       
          
      
@@ -73,9 +90,9 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
           <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" routerLink="/home">Dashboard</a></li>
-          <li class="breadcrumb-item text-sm text-white active" aria-current="page">Mes Réservations</li>
+          <li class="breadcrumb-item text-sm text-white active" aria-current="page">Payement</li>
         </ol>
-        <h6 class="font-weight-bolder text-white mb-0">Mes Réservations</h6>
+        <h6 class="font-weight-bolder text-white mb-0">Payement</h6>
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -104,53 +121,59 @@
                 <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Event</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mmebre</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date reservation</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type event</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date réservation</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Activites</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Somme</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                    
-                  <th class="text-secondary opacity-7">Activites</th>
+                  <th class="text-secondary opacity-7">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <ng-container *ngFor="let item of reservations| paginate: { itemsPerPage: 10, currentPage: p }">
-                        <tr *ngIf="id==item.user.id">
+                    <ng-container *ngFor="let item of payements| paginate: { itemsPerPage: 10, currentPage: p }">
+                        <tr *ngIf="item?.reservation?.user.id ==id" >
                             <td>
                               <div class="d-flex px-2 py-1">
                                  
                                 <div class="d-flex flex-column justify-content-center">
-                                  <h6 class="mb-0 text-sm">{{item.event.title}}</h6>
-                                  <p class="text-xs text-secondary mb-0"></p>
+                                  <h6 class="mb-0 text-sm">{{item?.reservation?.event.title}}</h6>
+                                
                                 </div>
                               </div>
                             </td>
                             <td>
-                                <p class="text-xs font-weight-bold mb-0" style="text-align: center;">{{item.user.firstName}} {{item.user.lastName}} </p>
+                                <p class="text-xs font-weight-bold mb-0"  >
+                                    {{item?.reservation?.dateReservation|date:'dd-MM-yyyy'}}
+                                
+                                </p>
                                  
                               </td>
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0" style="text-align: center;">{{item.dateReservation|date:'dd-MM-yyyy'}}</p>
-                               
-                            </td>
+                           
                             <td class="align-middle text-center">
-                                <span class="text-secondary text-xs font-weight-bold">{{item.event.type}}</span>
+                                <span class="text-secondary text-xs font-weight-bold">{{item?.reservation?.activites?.length}} Activities(Payé)</span>
                               </td>
 
                               <td class="align-middle text-center text-sm">
                                  
                                 
-                                <span class="text-secondary text-xs font-weight-bold">{{item.status}}</span>
+                                <span class="text-secondary text-xs font-weight-bold">{{item.sum}} DT</span>
                               
                              
                               </td>
-                            <td class="align-middle text-center text-sm">
+                            <td class="align-middle text-center text-sm"*ngIf="item.status">
                                  
                                 
-                              <span class="text-secondary text-xs font-weight-bold">{{item.activites.length}} Activities(Payé)</span>
+                              <span  class="text-secondary text-xs font-weight-bold">Payé</span>
+                            
                             
                            
                             </td>
+                            <td class="align-middle text-center text-sm" *ngIf="!item.status">
+                              <span   class="text-secondary text-xs font-weight-bold">Pas encore {{item.status}}</span>
+                          
                            
+                            </td>
+                            <td style="    padding-left: 40px;cursor: pointer;"><i  class='bx bxs-credit-card-front' (click)="makePayment(item.id)"></i> </td>
                            
                             
                           </tr>
