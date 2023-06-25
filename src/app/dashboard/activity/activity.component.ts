@@ -78,6 +78,7 @@ getAll(){
       
       
     }
+    //change montant selon type d'activite
     onChanges(val:any){
       if(val=="Gratuits"){
         this.activityForm.patchValue({montant:0})

@@ -17,16 +17,12 @@ export class StatistiqueEventComponent {
   barChartLegend = true;
   barChartPlugins = [];
   barChartData: any = [
-    { data: [], label: 'Les reservation le plus réservé' }
+    { data: [], label: 'L\'event le plus réservé' }
   ];
-  
-constructor(private eventService:EventService){
-
-}
-
+  //Injection de dependance :permet de créér un code faiblement couplé
+constructor(private eventService:EventService){}
+//cycle de vie de componenet angular
 ngOnInit(): void {
-
-
   this.eventService.getStat().subscribe(res=>{
     
     let i=0

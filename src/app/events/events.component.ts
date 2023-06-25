@@ -26,17 +26,8 @@ export class EventsComponent {
 elm:any= HTMLElement;
 elmA:any= HTMLElement;
 
- 
-options:any={ 
-  layers:[tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  opacity: 0.7,
-  maxZoom: 19,
-  detectRetina: true,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  })],
-  zoom:90,
-  center:latLng(1.3521,103.8189)
-  };
+options:any;
+
   onMapReady(map: L.Map) {}
   activities:any=[]
  
@@ -101,9 +92,21 @@ close(): void {
       el.id==id
     )  
     this.event=this.event[0]
+    console.log(this.event);
+    
     
      this.elm.classList.add('show');
      this.elm.style.width = '100vw';
+    this.options={ 
+      layers:[tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      opacity: 0.7,
+      maxZoom: 19,
+      detectRetina: true,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      })],
+      zoom:90,
+      center:latLng(this.event.lat,this.event.lang)
+      };
      
  }
 serach(){
