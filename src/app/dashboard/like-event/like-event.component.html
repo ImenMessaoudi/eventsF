@@ -96,7 +96,7 @@
           <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white">Dashboard</a></li>
           <li class="breadcrumb-item text-sm text-white active" aria-current="page">List event</li>
         </ol>
-        <h6 class="font-weight-bolder text-white mb-0">List event</h6>
+        <h6 class="font-weight-bolder text-white mb-0">List like</h6>
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -216,77 +216,57 @@
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header pb-0 headers">
-            <h6>List event</h6>
-            <div class="button">
-
-              <button class="btn btn-primary" (click)="open()" style="margin-right: 45px;"> New event</button>
-              <button class="btn btn-primary" routerLink="/calender" style="
-              background: #ff572a !important;
-              border: none !important;"> Calender</button>
-            </div>
-
+            <h6>List like</h6>
+        
           </div>
-          <div class="card-body px-0 pt-0 pb-2">
-            <div class="table-responsive p-0">
-              <table class="table align-items-center justify-content-center mb-0">
-                <thead>
-                  <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Image</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Start Date</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">End Date</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder   opacity-7 ps-2">Adress</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  opacity-7 ps-2">Type</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder   opacity-7 ps-2">Action </th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <ng-container *ngFor="let item of events">
-                    <tr>
-                      <td>
-                        <img src="http://localhost:8089/api/event/event/{{item?.id}}" style="width: 85px;"
-                          alt="Profile Image" class="profile">
-
-                      </td>
-                      <td>
-                        <div class="d-flex px-2">
-
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">{{item.title}}</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">{{item.startDate|date:'dd-MM-yyyy'}}</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">{{item.endDate|date:'dd-MM-yyyy'}}</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">{{item.lieu}}</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">{{item.type}}</span>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0">
-                          <i class='bx bx-edit-alt' style="margin-left: -100%" (click)="openUpdate(item.id)"></i>
-                          <i class='bx bxs-coffee-togo' style="margin-left: 25%" (click)="deleteEvent(item.id)"></i>
-                          <i class='bx bx-list-plus' style=" margin-left: 25%;FONT-SIZE: 22px;" routerLink="/activity/{{item.id}}"></i>
-                           <i class='bx bx-like' style=" margin-left: 25%;FONT-SIZE: 22px;" routerLink="/like/{{item.id}}"></i> 
-                        
-                        </button>
-                      </td>
-                    </tr>
-                  </ng-container>
-
-
-
-                </tbody>
-              </table>
-            </div>
+          <div class="example-header">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
           </div>
+          
+          <div class="example-container mat-elevation-z8">
+          
+            <mat-table [dataSource]="dataSource" matSort>
+          
+              <!-- ID Column -->
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+              </ng-container>
+          
+              <!-- Progress Column -->
+              <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> firstName </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> lastName </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
+              </ng-container>
+          
+              <!-- Color Column -->
+              <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> username </mat-header-cell>
+                <mat-cell *matCellDef="let row"  > {{row.username}} </mat-cell>
+              </ng-container>
+          
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;">
+              </mat-row>
+              
+            </mat-table>
+           
+          
+           
+          </div>
+          
+          
+          <!-- Copyright 2018 Google Inc. All Rights Reserved.
+              Use of this source code is governed by an MIT-style license that
+              can be found in the LICENSE file at http://angular.io/license -->
         </div>
       </div>
     </div>
@@ -306,96 +286,4 @@
     </footer>
   </div>
 </main>
-<div class="modal fade my-modal" tabindex="-1" role="dialog" #myModal>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-
-
-        <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-        <ng-container *ngIf="!isLoged">
-          <div class="outer">
-            <div class="container">
-              <div class="row">
-                <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-                  <div class="panel border bg-white" style="width: 235%;margin-left: -174px;">
-
-                    <div class="pannel-body p-3" style="width: 98%;">
-
-                      <header>{{modalTitle}}</header>
-                      <form [formGroup]="eventForm" class="form">
-                        <div class="input-box">
-                          <label>Title</label>
-                          <input type="text" placeholder="Enter title" formControlName="title" />
-                        </div>
-                        <div class="input-box">
-                          <label>address</label>
-                          <input type="text" placeholder="Enter   address" formControlName="lieu" />
-                        </div>
-                        <div class="column">
-                          <div class="input-box">
-                            <label>Start day</label>
-                            <input type="date" placeholder="Enter phone number" formControlName="startDate" />
-                          </div>
-                          <div class="input-box">
-                            <label>End day</label>
-                            <input type="date" placeholder="Enter birth date" formControlName="endDate" />
-                          </div>
-                        </div>
-                        <div class="input-box">
-                          <label>Type</label>
-                          <div class="select-box">
-                            <select formControlName="type">
-
-                              <option value="Formation">Formation</option>
-                              <option value="Semenaire">Semenaire</option>
-                              <option value="Team_Building">Team Building</option>
-
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="input-box">
-                          <label>Descrition</label>
-                          <input type="text" placeholder="Enter description" required formControlName="description" />
-                        </div>
-
-                        <div class="input-box">
-                          <label>Image</label>
-                          <input type="file" placeholder="Enter title" (change)="onSelectFile($event)" />
-                          <img [src]="imgURL" height="200" *ngIf="imgURL">
-                        </div>
-                        <div class="column">
-                          <div class="input-box">
-                            <label>Longitude</label>
-                            <input type="text" placeholder="Enter lang" formControlName="lang" />
-                          </div>
-                          <div class="input-box">
-                            <label>Latitude</label>
-                            <input type="text" placeholder="Enter lat" formControlName="lat" />
-                          </div>
-                        </div>
-                        <button type="submit" (click)="onSubmit()">Submit</button>
-                      </form>
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="close()">Close
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+ 

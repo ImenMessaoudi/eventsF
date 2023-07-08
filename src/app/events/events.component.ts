@@ -60,6 +60,9 @@ ngOnInit(): void {
     description:['',Validators.required]
 
   })
+this.getAll()
+}
+getAll(){
   this.eventService.getAll().subscribe(res=>{
     this.events=res
     console.log(this.events);
@@ -217,8 +220,23 @@ logout(){
   localStorage.removeItem('token')
   this.router.navigate(['/login'])
 }
- 
+ like(id:any){
+  this.eventService.like(id).subscribe(res=>{
+    this.toast.success("Like with sucees")
+    this.getAll()
+  },(error=>{
+    this.toast.error("Already like with succes")
+  }))
+ }
+ deslike(id:any){
+  this.eventService.deslike(id).subscribe(res=>{
+    this.toast.success("Deslike with sucees")
+    this.getAll()
+  },(error=>{
+    this.toast.error("Already Deslike with succes")
+  }))
 } 
+}
 
  
 

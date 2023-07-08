@@ -121,6 +121,8 @@ this.eventForm.patchValue({
  }
 
  onSubmit(){
+
+  if(this.eventForm.value.startDate<this.eventForm?.value.endDate){
   const formData = new FormData();
   formData.append('event', JSON.stringify(this.eventForm.value));
   formData.append('file',  this.imagePath);
@@ -143,6 +145,8 @@ if(this.id!=''){
     this.imgURL=''
   })
  }
+}}else{
+  this.toast.error('Event start date must be  great then end date!!');
 }
  }
  getAllEvent(){

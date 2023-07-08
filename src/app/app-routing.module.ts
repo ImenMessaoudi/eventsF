@@ -31,6 +31,8 @@ import { MesReservationComponent } from './dashboard/mes-reservation/mes-reserva
 import { ForgetPasswordComponent } from './profile/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './profile/reset-password/reset-password.component';
 import { PayementComponent } from './dashboard/payement/payement.component';
+import { EventCalenderComponent } from './dashboard/event-calender/event-calender.component';
+import { LikeEventComponent } from './dashboard/like-event/like-event.component';
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "", component: HomeComponent },
@@ -64,6 +66,9 @@ const routes: Routes = [
   { path: "list-activity/:eventId", component: ActiviteListComponent },
   { path: "forget-password", component: ForgetPasswordComponent },
   { path: "reset-password", component: ResetPasswordComponent },
-  { path: "payement", component: PayementComponent },
+  { path: "payement", component: PayementComponent },,
+  { path: "calendar", component: EventCalenderComponent },
+ 
+  {path:"like/:id",component:LikeEventComponent}, 
 ];
 export const AppRoutingModule = RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' });

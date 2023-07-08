@@ -1,224 +1,228 @@
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('assets/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
-        <div class="col-md-9 ftco-animate pb-5">
-          <h1 class="mb-3 bread">Events</h1>
-          <p class="breadcrumbs"><span class="mr-2"><a href="#">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
-        </div>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+      <div class="col-md-9 ftco-animate pb-5">
+        <h1 class="mb-3 bread">Events</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="#">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog <i class="ion-ios-arrow-forward"></i></span></p>
       </div>
     </div>
-  </section>
-  
-  <section class="ftco-section bg-light">
-    <div class="container">
-  
-        <h4 class="h4">Dernières événement</h4>
+  </div>
+</section>
 
-        <div class="jobs">
-            <form [formGroup]="searchForm" (ngSubmit)="serach()">
-                <input class="form-control" type="text"  formControlName="title" placeholder="Title"/>
-                <input class="form-control" type="text"  formControlName="description" placeholder="Mots Clés"/>
-                <button type="submit" class="button-searsh">Search</button>
-            </form>
-        </div>
-        <div class="row">
-            <span class="annonces"> {{events.length}} événement trouvées</span>
-            <div class="col-4">
-                    <div class="search">
-                        <div class="filter">Filter</div>
-                    </div>
-                    <div class="search-zone">
-                        <form style="    display: block;"  [formGroup]="searchBydateForm" (ngSubmit)="serachbyDate()">
-                            <input type="date"  formControlName="start" class="form-control"><br> 
-                            <input type="date"   formControlName="end" class="form-control"><br>
-                            <button type="submit" class="button-filter">Filter</button>
-                        </form>
-                    </div>
-            </div>
-            <div class="col-8">
-                
-                <div class="menu-content">
-                    <div class="menu-items">
-                            <ng-container *ngFor="let item of events ">
-                            
-                            <div class="menu-item flex">
-                                    
-                
-                                    <div class="menuItem-details" style="    width: 79%;">
-                                            <h4 class="menuItem-topic" style="    font-size: 19px;">
-                                              <img src="http://localhost:8089/api/event/event/{{item?.id}}" style="
-                                              width: 85px;
-                                              height: 74px;
-                                              margin-right: 8px;" alt="Profile Image" class="profile">
+<section class="ftco-section bg-light">
+  <div class="container">
 
-                                              {{item.title}}<span class="date">{{item.startDate|date:'dd/MM/yyyy'}}  - {{item.startDate|date:'dd/MM/yyyy'}} </span></h4>
-                                            <p class="menuItem-des">
-                                                    
-                                                    {{item.description?.length>50 ? (item.description | slice:0:150)+'..' : item.description}}
-                                                     </p>
-                                                     <span class="discount-price"><i class='bx bx-building-house'></i> {{item.type}}</span>
-                                            <span class="adresse"> <i class='bx bxs-map'></i>{{item.lieu}}</span>
-                                           
-                                    </div>
-                
-                                     <div class="choose" style="display: block;">
-                                        <button style="    height: 4%;" class="btn btn-sm mb-0 me-1 btn-primary" (click)="open(item.id)">Voir plus</button>
-                                        <button style="    height: 4%;    background: #686677 !important;
-                                        border: 1px solid #686677 !important;
-                                        color: #fff !important;" class="btn btn-sm mb-0 me-1 btn-primary" (click)="reserver(item.id)" >Réserver</button>
-                               
-                                     </div>
-                                    
-                                    </div>
-                             
-                    </ng-container>
-                            
-                    </div>
-                
-                    
-                </div>
-            </div>
-        </div>
-  
-    
-    </div>
-  </section>
-  
-  <section class="ftco-section-parallax">
-    <div class="parallax-img d-flex align-items-center">
-      <div class="container">
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-            <h2>Subcribe to our Newsletter</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
-            <div class="row d-flex justify-content-center mt-4 mb-4">
-              <div class="col-md-8">
-                <form action="#" class="subscribe-form">
-                  <div class="form-group d-flex">
-                    <input type="text" class="form-control" placeholder="Enter email address">
-                    <input type="submit" value="Subscribe" class="submit px-3">
+      <h4 class="h4">Dernières événement</h4>
+
+      <div class="jobs">
+          <form [formGroup]="searchForm" (ngSubmit)="serach()">
+              <input class="form-control" type="text"  formControlName="title" placeholder="Title"/>
+              <input class="form-control" type="text"  formControlName="description" placeholder="Mots Clés"/>
+              <button type="submit" class="button-searsh">Search</button>
+          </form>
+      </div>
+      <div class="row">
+          <span class="annonces"> {{events.length}} événement trouvées</span>
+          <div class="col-4">
+                  <div class="search">
+                      <div class="filter">Filter</div>
                   </div>
-                </form>
+                  <div class="search-zone">
+                      <form style="    display: block;"  [formGroup]="searchBydateForm" (ngSubmit)="serachbyDate()">
+                          <input type="date"  formControlName="start" class="form-control"><br> 
+                          <input type="date"   formControlName="end" class="form-control"><br>
+                          <button type="submit" class="button-filter">Filter</button>
+                      </form>
+                  </div>
+          </div>
+          <div class="col-8">
+              
+              <div class="menu-content">
+                  <div class="menu-items">
+                          <ng-container *ngFor="let item of events ">
+                          
+                          <div class="menu-item flex">
+                                  
+              
+                                  <div class="menuItem-details" style="    width: 79%;">
+                                          <h4 class="menuItem-topic" style="    font-size: 19px;">
+                                            <img src="http://localhost:8089/api/event/event/{{item?.id}}" style="
+                                            width: 85px;
+                                            height: 74px;
+                                            margin-right: 8px;" alt="Profile Image" class="profile">
+
+                                            {{item.title}}<span class="date">{{item.startDate|date:'dd/MM/yyyy'}}  - {{itetDate|date:'dd/MM/yyyy'}} </span></h4>
+                                          <p class="menuItem-des">
+                                                  
+                                                  {{item.description?.length>50 ? (item.description | slice:0:150)+'..' : item.description}}
+                                                   </p>
+                                                   <span class="discount-price"><i class='bx bx-building-house'></i> {{item.type}}</span>
+                                          <span class="adresse"> <i class='bx bxs-map'></i>{{item.lieu}}</span>
+                                         
+                                  </div>
+                                 {{item.likes?.length}} <i class='bx bx-like'  (click)="like(item.id)"></i>
+                                 {{item.deslikes?.length}}  <i class='bx bx-dislike' (click)="deslike(item.id)"></i>
+                                 
+
+                                   <div class="choose" style="display: block;">
+                                      <button style="    height: 4%;" class="btn btn-sm mb-0 me-1 btn-primary" (click)="open(item.id)">Voir plus</button>
+                                      <button style="    height: 4%;    background: #686677 !important;
+                                      border: 1px solid #686677 !important;
+                                      color: #fff !important;" class="btn btn-sm mb-0 me-1 btn-primary" (click)="reserver(item.id)" >Réserver</button>
+                             
+
+                                   </div>
+                                  
+                                  </div>
+                           
+                  </ng-container>
+                          
+                  </div>
+              
+                  
               </div>
+          </div>
+      </div>
+
+  
+  </div>
+</section>
+
+<section class="ftco-section-parallax">
+  <div class="parallax-img d-flex align-items-center">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          <h2>Subcribe to our Newsletter</h2>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+          <div class="row d-flex justify-content-center mt-4 mb-4">
+            <div class="col-md-8">
+              <form action="#" class="subscribe-form">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control" placeholder="Enter email address">
+                  <input type="submit" value="Subscribe" class="submit px-3">
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <div class="modal fade my-modal" tabindex="-1" role="dialog" #myModal >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-            
-   
-           <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
-           </button>
-        </div>
-        <div class="modal-body" *ngIf="event!=null">
-        
-        <div class="events">
-          <h4 style="text-align: center;">Event details</h4>
-         
-       
-
-          <h3 style="text-align: center;">List des activites</h3>
- 
-          <table class="table table-dark table-hover" style="    margin-top: 145px;">
-        
-            <thead>
-              <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Heure début</th>
-                <th scope="col">Heure fin</th>
-                <th scope="col">Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of event?.activites">
-                <th  >{{item.title}}</th>
-                <td style="    padding-left: 40px;">{{item.debut}}</td>
-                <td style="    padding-left: 40px;">{{item.fin}}</td>
-                <td>{{item.montant}} DT</td>
-              </tr>
-              
-             
-            </tbody>
-          </table>
+  </div>
+</section>
+<div class="modal fade my-modal" tabindex="-1" role="dialog" #myModal >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
           
-        </div>
-        </div>
-        <div
-         class="map-container" leaflet   
-          [leafletOptions]="options"      ></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"  (click)="close()" >Close
-          </button>
-        </div>
+ 
+         <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div class="modal-body" *ngIf="event!=null">
+      
+      <div class="events">
+        <h4 style="text-align: center;">Event details</h4>
+       
+     
+
+        <h3 style="text-align: center;">List des activites</h3>
+
+        <table class="table table-dark table-hover" style="    margin-top: 145px;">
+      
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Heure début</th>
+              <th scope="col">Heure fin</th>
+              <th scope="col">Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of event?.activites">
+              <th  >{{item.title}}</th>
+              <td style="    padding-left: 40px;">{{item.debut}}</td>
+              <td style="    padding-left: 40px;">{{item.fin}}</td>
+              <td>{{item.montant}} DT</td>
+            </tr>
+            
+           
+          </tbody>
+        </table>
+        
+      </div>
+      </div>
+      <div
+       class="map-container" leaflet   
+        [leafletOptions]="options"      ></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  (click)="close()" >Close
+        </button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal fade my-modal" tabindex="-1" role="dialog" #myactivity >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
+<div class="modal fade my-modal" tabindex="-1" role="dialog" #myactivity >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          
+ <h5 style="text-align: center;">Event activity</h5>
+         <button type="button" class="close" (click)="closeM()" aria-label="Close"><span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div style="margin-left: -160px;">
+
+        <div class="row liste-a" style="margin-top: 20px;" *ngIf="event?.activites.length >0">
+            <ng-container *ngFor="let item of event?.activites; let i = index;">
             
-   <h5 style="text-align: center;">Event activity</h5>
-           <button type="button" class="close" (click)="closeM()" aria-label="Close"><span aria-hidden="true">&times;</span>
-           </button>
-        </div>
-        <div style="margin-left: -160px;">
+            <div   style="margin-top: 4%;width: 50%;" *ngIf="item.montant > 0">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-8">
+                        <div class="numbers">
+                          <p class="text-sm mb-0 text-uppercase font-weight-bold">{{item.title}}</p>
+                          <h5 class="font-weight-bolder">
+                            {{item.montant}}DT
+                          </h5>
+                          <div class="detailss">
+                          <p class="mb-0">
+                            <span class="text-success text-sm font-weight-bolder"> </span>
+                            {{item.debut}} -> {{item.fin}}
+                          </p>
 
-          <div class="row liste-a" style="margin-top: 20px;" *ngIf="event?.activites.length >0">
-              <ng-container *ngFor="let item of event?.activites; let i = index;">
-              
-              <div   style="margin-top: 4%;width: 50%;" *ngIf="item.montant > 0">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-8">
-                          <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">{{item.title}}</p>
-                            <h5 class="font-weight-bolder">
-                              {{item.montant}}DT
-                            </h5>
-                            <div class="detailss">
-                            <p class="mb-0">
-                              <span class="text-success text-sm font-weight-bolder"> </span>
-                              {{item.debut}} -> {{item.fin}}
-                            </p>
-
-                            <div class="actions">
-                              
-                              <i *ngIf="!exist(item.activityId)" class='bx bx-cart-add' (click)="add(item.activityId)"></i>
-                              <i style="    color: red;" *ngIf="exist(item.activityId)" class='bx bx-x' (click)="delete(item.activityId)"></i>
-                              
-                            </div>
-                          </div>
+                          <div class="actions">
+                            
+                            <i *ngIf="!exist(item.activityId)" class='bx bx-cart-add' (click)="add(item.activityId)"></i>
+                            <i style="    color: red;" *ngIf="exist(item.activityId)" class='bx bx-x' (click)="delete(item.activityId)"></i>
+                            
                           </div>
                         </div>
-                        
+                        </div>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
-              </ng-container>
-          </div>
-
-          <p style="text-align: center;" *ngIf="event?.activites.length ==0">Pas des activites</p>
-             
-        
-         
-      </div>
-      
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary"  (click)="booking()" >Réserver
-          </button>
-          <button type="button" class="btn btn-secondary"  (click)="close()" >Close
-          </button>
+              </div>
+            </ng-container>
         </div>
+
+        <p style="text-align: center;" *ngIf="event?.activites.length ==0">Pas des activites</p>
+           
+      
+       
+    </div>
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"  (click)="booking()" >Réserver
+        </button>
+        <button type="button" class="btn btn-secondary"  (click)="close()" >Close
+        </button>
       </div>
     </div>
   </div>
+</div>

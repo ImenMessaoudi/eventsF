@@ -45,6 +45,17 @@ import { MesReservationComponent } from './dashboard/mes-reservation/mes-reserva
 import { ResetPasswordComponent } from './profile/reset-password/reset-password.component';
 import { ForgetPasswordComponent } from './profile/forget-password/forget-password.component';
 import { PayementComponent } from './dashboard/payement/payement.component';
+import { LikeEventComponent } from './dashboard/like-event/like-event.component';
+import { EventCalenderComponent } from './dashboard/event-calender/event-calender.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FullCalendarModule } from '@fullcalendar/angular';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ActivityService } from './services/activity.service';
 
  
  
@@ -84,10 +95,14 @@ import { PayementComponent } from './dashboard/payement/payement.component';
      MesReservationComponent,
      ResetPasswordComponent,
      ForgetPasswordComponent,
-     PayementComponent
+     PayementComponent,
+     LikeEventComponent,
+     EventCalenderComponent
   ],
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
@@ -97,8 +112,15 @@ import { PayementComponent } from './dashboard/payement/payement.component';
     NgxPaginationModule,
     GoogleMapsModule,
     LeafletModule,
-    NgChartsModule
-
+    NgChartsModule,
+    FullCalendarModule ,
+    
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule
+ 
   ],
   providers: [DatePipe,FactureService,ReclamationService],
   bootstrap: [AppComponent]

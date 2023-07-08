@@ -59,4 +59,15 @@ export class EventService {
   getStat() {
     return this.http.get<any>(this.url + '/statEvent');
   }
+
+  like(eventId:any){
+
+    const id=localStorage.getItem('id')
+    return this.http.put<any>(this.url + '/like/'+eventId+'/'+id,{});
+  }
+  deslike(eventId:any){
+    const id=localStorage.getItem('id')
+    return this.http.put<any>(this.url + '/deslike/'+eventId+'/'+id,{});
+  }
 }
+

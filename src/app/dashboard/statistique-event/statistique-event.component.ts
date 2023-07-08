@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChartOptions, ChartType } from 'chart.js';
 import { EventService } from 'src/app/services/event.service';
 
@@ -20,7 +21,7 @@ export class StatistiqueEventComponent {
     { data: [], label: 'L\'event le plus réservé' }
   ];
   //Injection de dependance :permet de créér un code faiblement couplé
-constructor(private eventService:EventService){}
+constructor(private eventService:EventService,private router: Router){}
 //cycle de vie de componenet angular
 ngOnInit(): void {
   this.eventService.getStat().subscribe(res=>{
@@ -61,4 +62,10 @@ ngOnDestroy() {
   const element2 = document.getElementById("ftco-footer");
   element2.removeAttribute("hidden");
   }
+  
+ logout(){
+  localStorage.removeItem('id')
+  localStorage.removeItem('token')
+  this.router.navigate(['/login'])
+ }
 }

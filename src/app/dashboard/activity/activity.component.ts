@@ -20,7 +20,7 @@ export class ActivityComponent {
     constructor(private fb:FormBuilder,private route:ActivatedRoute,
       private eventService:EventService,
       private toast: HotToastService,
-      private activityService:ActivityService,
+      private activityService:ActivityService
       ){
   
     }

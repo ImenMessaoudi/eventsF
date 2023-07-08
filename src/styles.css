@@ -18,3 +18,6 @@
 @import "assets/css/nucleo-svg.css";
 @import "assets/css/gapi2.css";
 @import "assets/css/argon-dashboard.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
