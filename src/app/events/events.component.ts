@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class EventsComponent {
   
-  events:any=[]
+  events:any=[] 
   event:any
   searchForm!:FormGroup;
   searchBydateForm!:FormGroup;
