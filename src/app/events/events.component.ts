@@ -8,6 +8,7 @@ import * as L from 'leaflet';
 import {tileLayer,latLng} from 'leaflet';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
